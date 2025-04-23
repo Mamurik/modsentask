@@ -1,5 +1,4 @@
-# .husky/commit-msg
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
+#!/bin/sh
 
-npx --no -- commitlint --edit "$1"
+
+npx --no-install commitlint --edit "$1"

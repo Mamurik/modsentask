@@ -1,10 +1,7 @@
-import Alex from '@components/alex';
+import { AppRouter } from '@pages/AppRouter';
+
 const App = () => {
-  return (
-    <div>
-      <Alex />
-    </div>
-  );
+  return <AppRouter />;
 };
 
 export default App;

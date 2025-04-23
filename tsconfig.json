@@ -14,10 +14,13 @@
     /* Базовые пути и алиасы */
     "baseUrl": "src",
     "paths": {
-      "@components/*": ["components/*"],
-      "@hooks/*": ["hooks/*"],
+      "@api/*": ["api/*"],
       "@assets/*": ["assets/*"],
-      "@utils/*": ["utils/*"]
+      "@components/*": ["components/*"],
+      "@constants/*": ["constants/*"],
+      "@pages/*": ["pages/*"],
+      "@store/*": ["store/*"],
+      "@types/*": ["types/*"]
     },
 
     /* Строгий режим и дополнительные проверки */
