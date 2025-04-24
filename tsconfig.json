@@ -11,7 +11,6 @@
     "moduleDetection": "force",
     "noEmit": true,
 
-    /* Базовые пути и алиасы */
     "baseUrl": "src",
     "paths": {
       "@api/*": ["api/*"],
@@ -20,10 +19,9 @@
       "@constants/*": ["constants/*"],
       "@pages/*": ["pages/*"],
       "@store/*": ["store/*"],
-      "@types/*": ["types/*"]
+      "@types": ["types/types.ts"]
     },
 
-    /* Строгий режим и дополнительные проверки */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,

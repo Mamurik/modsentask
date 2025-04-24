@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
-export const Nav = styled.nav<{ isOpen?: boolean }>`
+export const Nav = styled.nav.withConfig({
+  shouldForwardProp: (prop) => prop !== 'isOpen',
+})<{ isOpen?: boolean }>`
   position: fixed;
   left: 0;
   top: 0;

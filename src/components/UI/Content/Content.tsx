@@ -15,7 +15,7 @@ const StyledContent = styled.div`
     margin-left: 0;
     margin-right: 0;
     padding: 16px;
-    height: auto; /* или адаптируй по ситуации */
+    height: auto;
   }
 `;
 
