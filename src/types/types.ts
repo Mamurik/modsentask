@@ -3,7 +3,6 @@ export interface ITrack {
   genre: string;
   id: string;
   track_cid: string;
-  orig_filename: string;
   release_date: string;
   title: string;
   user: User;
