@@ -1,9 +1,12 @@
 import MusicList from '@components/MusicList/MusicList';
+import MusicPlayer from '@components/UI/MusicPlayer/MusicPlayer';
 import SearchInput from '@components/UI/SearchInput/SearchInput';
 import {
   HomeMusicImage,
   HomeWrapper,
+  ImagePlayerWrapper,
   InputWrapper,
+  MusicPlayerWrapper,
   ResultText,
 } from './Home.styled';
 
@@ -13,7 +16,13 @@ const Home = () => {
       <InputWrapper>
         <SearchInput placeholder="Search artist, title, album"></SearchInput>
       </InputWrapper>
-      <HomeMusicImage src="img/home/HomeMusic.png" />
+      <ImagePlayerWrapper>
+        <MusicPlayerWrapper>
+          <MusicPlayer />
+        </MusicPlayerWrapper>
+        <HomeMusicImage src="img/home/HomeMusic.png" />
+      </ImagePlayerWrapper>
+
       <ResultText>Search results</ResultText>
       <MusicList></MusicList>
     </HomeWrapper>

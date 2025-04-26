@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const TrackWrapper = styled.div`
   display: flex;
+  position: relative;
   flex-direction: column;
   width: 230px;
   height: auto;
@@ -74,4 +75,9 @@ export const IconLike = styled.div`
   margin-left: 8px;
   cursor: pointer;
   flex-shrink: 0;
+`;
+export const MusicIconWrapper = styled.div`
+  position: absolute;
+  right: 30px;
+  top: 50px;
 `;

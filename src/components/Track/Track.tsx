@@ -1,11 +1,18 @@
-import { LikeIcon } from '@components/UI/Icons/Icons';
+// @components/Track/Track.tsx
+import {
+  LikeIcon,
+  MusicPlaying,
+  MusicStopped,
+} from '@components/UI/Icons/Icons';
 import { toggleFavorite } from '@store/Slices/FavoritesSlice';
+import { setSelectedTrack, togglePlayPause } from '@store/Slices/TracksSlice';
 import { RootState } from '@store/store';
 import { ITrack } from '@types';
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   IconLike,
+  MusicIconWrapper,
   TrackAuthor,
   TrackImage,
   TrackInfoRow,
@@ -23,15 +30,37 @@ const Track: FC<TrackProps> = ({ track }) => {
   const favoriteIds = useSelector(
     (state: RootState) => state.favorites.favoriteTrackIds
   );
+  const selectedTrack = useSelector(
+    (state: RootState) => state.tracks.selectedTrack
+  );
+  const isPlaying = useSelector((state: RootState) => state.tracks.isPlaying);
+
   const isLiked = favoriteIds.includes(track.id);
+  const isCurrentTrack = selectedTrack?.id === track.id;
 
   const handleLike = () => {
     dispatch(toggleFavorite(track.id));
   };
 
+  const handlePlayPause = () => {
+    if (isCurrentTrack) {
+      dispatch(togglePlayPause());
+    } else {
+      dispatch(setSelectedTrack(track));
+    }
+  };
+
+  const handleImageClick = () => {
+    handlePlayPause();
+  };
+
   return (
     <TrackWrapper>
-      <TrackImage src={track.artwork['480x480']} />
+      <TrackImage
+        src={track.artwork['480x480']}
+        onClick={handleImageClick}
+        style={{ cursor: 'pointer' }}
+      />
       <TrackInfoRow>
         <TrackText>
           <TrackTitle>{track.title}</TrackTitle>
@@ -44,6 +73,9 @@ const Track: FC<TrackProps> = ({ track }) => {
           />
         </IconLike>
       </TrackInfoRow>
+      <MusicIconWrapper onClick={handlePlayPause} style={{ cursor: 'pointer' }}>
+        {isCurrentTrack && isPlaying ? <MusicPlaying /> : <MusicStopped />}
+      </MusicIconWrapper>
     </TrackWrapper>
   );
 };

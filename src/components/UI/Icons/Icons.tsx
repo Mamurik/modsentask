@@ -62,3 +62,53 @@ export const LikeIcon = ({ color = '#999999', fill = 'none' }: IconProps) => (
     />
   </svg>
 );
+export const MusicStopped = () => (
+  <svg
+    width="36"
+    height="36"
+    viewBox="0 0 36 36"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect width="36" height="36" rx="18" fill="#121212" fillOpacity="0.5" />
+    <path
+      d="M12.667 18V15.6267C12.667 12.68 14.7537 11.4733 17.307 12.9467L19.367 14.1333L21.427 15.32C23.9803 16.7933 23.9803 19.2067 21.427 20.68L19.367 21.8667L17.307 23.0533C14.7537 24.5267 12.667 23.32 12.667 20.3733V18Z"
+      fill="white"
+      stroke="white"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const MusicPlaying = () => {
+  return (
+    <svg
+      width="36"
+      height="36"
+      viewBox="0 0 36 36"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect width="36" height="36" rx="18" fill="#121212" fillOpacity="0.5" />
+      <rect
+        x="14"
+        y="13"
+        width="3.375"
+        height="10.125"
+        rx="1.6875"
+        fill="white"
+      />
+      <rect
+        x="19"
+        y="13"
+        width="3.375"
+        height="10.125"
+        rx="1.6875"
+        fill="white"
+      />
+    </svg>
+  );
+};

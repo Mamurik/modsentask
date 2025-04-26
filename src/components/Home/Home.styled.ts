@@ -5,8 +5,9 @@ export const HomeWrapper = styled.section`
 `;
 export const HomeMusicImage = styled.img`
   width: 100%;
-  height: 18em;
+  height: 16em;
   margin: 0px 32px;
+  margin-right: 200px;
   @media (max-width: 390px) {
     height: 10em;
     margin: 0px;
@@ -31,4 +32,16 @@ export const ResultText = styled.h1`
   padding: 25px;
   margin-top: 46px;
   margin-left: 17px;
+`;
+export const MusicPlayerWrapper = styled.div`
+  position: absolute;
+  top: 135px;
+  right: 60px;
+  width: 500px;
+  @media (max-width: 390px) {
+    max-width: 360px;
+  }
+`;
+export const ImagePlayerWrapper = styled.div`
+  position: relative;
 `;

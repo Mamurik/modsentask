@@ -4,27 +4,32 @@ import { ITrack } from '@types';
 interface TrackState {
   tracks: ITrack[];
   selectedTrack: ITrack | null;
-  isFavorite: boolean;
+  isPlaying: boolean; // здесь
 }
+
 const initialState: TrackState = {
   tracks: [],
   selectedTrack: null,
-  isFavorite: false,
+  isPlaying: false, // здесь
 };
+
 const TrackSlice = createSlice({
-  initialState,
   name: 'tracks',
+  initialState,
   reducers: {
     setTracks: (state, action: PayloadAction<ITrack[]>) => {
       state.tracks = action.payload;
     },
-    setSelectedTrack: (state, action: PayloadAction<ITrack>) => {
+    setSelectedTrack: (state, action: PayloadAction<ITrack | null>) => {
       state.selectedTrack = action.payload;
+      state.isPlaying = !!action.payload;
     },
-    toggleFavorite: (state) => {
-      state.isFavorite = !state.isFavorite;
+    togglePlayPause: (state) => {
+      state.isPlaying = !state.isPlaying;
     },
   },
 });
-export const { setSelectedTrack, setTracks } = TrackSlice.actions;
+
+export const { setTracks, setSelectedTrack, togglePlayPause } =
+  TrackSlice.actions;
 export default TrackSlice.reducer;
