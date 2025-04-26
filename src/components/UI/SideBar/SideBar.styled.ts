@@ -106,9 +106,7 @@ export const NavItem = styled(Link)<{ $active?: boolean }>`
       ? css`
           background: linear-gradient(90deg, #3dc3c0 -15.19%, #8568f5 111.92%);
         `
-      : css`
-          border: 1px solid black;
-        `}
+      : css``}
 `;
 
 export const Icon = styled.svg<{ $active?: boolean }>`

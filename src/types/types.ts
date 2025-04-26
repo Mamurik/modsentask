@@ -2,11 +2,13 @@ export interface ITrack {
   artwork: Artwork;
   genre: string;
   id: string;
-  track_cid: string;
-  release_date: string;
   title: string;
   user: User;
   duration: number;
+
+  release_date: string; //добавленным
+  repost_count: number; //актуальности
+  favorite_count: number; //популярности
 }
 
 export interface Artwork {

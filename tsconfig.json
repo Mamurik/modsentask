@@ -19,6 +19,7 @@
       "@constants/*": ["constants/*"],
       "@pages/*": ["pages/*"],
       "@store/*": ["store/*"],
+      "@hooks/*": ["hooks/*"],
       "@types": ["types/types.ts"]
     },
 

@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 
+interface InputProps {
+  $hasError?: boolean;
+}
+
 export const MyInputWrapper = styled.div`
   position: relative;
   width: 100%;
 `;
 
-export const MyInput = styled.input`
+export const MyInput = styled.input<InputProps>`
   width: 100%;
   padding: 12px 16px 12px 44px;
   border: 1px solid #ccc;
@@ -14,9 +18,10 @@ export const MyInput = styled.input`
   background: url('/img/search.svg') no-repeat 14px center;
   background-size: 20px 20px;
   margin-bottom: 20px;
+
   &:focus {
     outline: none;
-    border-color: #8568f5;
+    border: 1px solid #ccc;
     box-shadow: 0 0 0 2px rgba(133, 104, 245, 0.2);
   }
 
@@ -30,4 +35,11 @@ export const MyInput = styled.input`
     padding: 10px 12px 10px 40px;
     background-size: 16px 16px;
   }
+`;
+
+export const ErrorMessage = styled.span`
+  color: red;
+  font-size: 14px;
+  margin-top: 4px;
+  display: block;
 `;

@@ -24,9 +24,9 @@ export const TrackWrapper = styled.div`
   }
 `;
 
-export const TrackImage = styled.img`
-  width: 100%;
-  height: 95px;
+export const TrackImage = styled.img<{ $width?: string; $height?: string }>`
+  width: ${({ $width }) => $width || '100%'};
+  height: ${({ $height }) => $height || '95px'};
   object-fit: cover;
   border-radius: 12px;
 `;

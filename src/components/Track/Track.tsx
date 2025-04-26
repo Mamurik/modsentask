@@ -1,4 +1,3 @@
-// @components/Track/Track.tsx
 import {
   LikeIcon,
   MusicPlaying,
@@ -23,9 +22,11 @@ import {
 
 interface TrackProps {
   track: ITrack;
+  imageWidth?: string;
+  imageHeight?: string;
 }
 
-const Track: FC<TrackProps> = ({ track }) => {
+const Track: FC<TrackProps> = ({ track, imageWidth, imageHeight }) => {
   const dispatch = useDispatch();
   const favoriteIds = useSelector(
     (state: RootState) => state.favorites.favoriteTrackIds
@@ -60,6 +61,8 @@ const Track: FC<TrackProps> = ({ track }) => {
         src={track.artwork['480x480']}
         onClick={handleImageClick}
         style={{ cursor: 'pointer' }}
+        $width={imageWidth} // Передаем размеры
+        $height={imageHeight} // Передаем размеры
       />
       <TrackInfoRow>
         <TrackText>

@@ -1,20 +1,37 @@
-import { ChangeEvent, FC } from 'react';
-import { MyInput, MyInputWrapper } from './SearchInput.styled';
+import { ChangeEvent } from 'react';
+import { Control, Controller, FieldValues } from 'react-hook-form';
+import { ErrorMessage, MyInput, MyInputWrapper } from './SearchInput.styled';
+
+interface SearchFormData extends FieldValues {
+  search: string;
+}
 
 interface SearchInputProps {
-  value?: string;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  control: Control<SearchFormData>;
   placeholder: string;
 }
 
-const SearchInput: FC<SearchInputProps> = ({
-  onChange,
-  placeholder,
-  value,
-}) => {
+const SearchInput = ({ control, placeholder }: SearchInputProps) => {
   return (
     <MyInputWrapper>
-      <MyInput placeholder={placeholder} value={value} onChange={onChange} />
+      <Controller
+        name="search"
+        control={control}
+        render={({ field, fieldState: { error } }) => (
+          <>
+            <MyInput
+              maxLength={51}
+              placeholder={placeholder}
+              value={field.value || ''}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                field.onChange(e.target.value)
+              }
+              $hasError={!!error}
+            />
+            {error && <ErrorMessage>{error.message}</ErrorMessage>}
+          </>
+        )}
+      />
     </MyInputWrapper>
   );
 };

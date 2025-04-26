@@ -19,3 +19,9 @@ export const MusicListWrapper = styled.div`
     padding: 0px;
   }
 `;
+export const ErrorFindText = styled.h1`
+  color: 'red';
+  margin: '10px 0';
+  text-align: 'center';
+  fontsize: '30px';
+`;

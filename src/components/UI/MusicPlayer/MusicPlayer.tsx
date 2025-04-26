@@ -1,19 +1,14 @@
-// @components/MusicPlayer.tsx
 import { RootState } from '@store/store';
 import { useEffect, useRef, useState } from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import { useSelector } from 'react-redux';
-import styled from 'styled-components';
+import {
+  PlayerWrapper,
+  StyledAudioPlayer,
+  TrackTitle,
+} from './MusicPlayer.styled';
 
-const PlayerWrapper = styled.div`
-  position: relative;
-  padding: 20px;
-
-  .rhap_additional-controls .rhap_repeat-button {
-    display: none;
-  }
-`;
 const MusicPlayer = () => {
   const selectedTrack = useSelector(
     (state: RootState) => state.tracks.selectedTrack
@@ -36,7 +31,12 @@ const MusicPlayer = () => {
 
   return (
     <PlayerWrapper>
-      <AudioPlayer
+      {selectedTrack ? (
+        <TrackTitle>{selectedTrack.title}</TrackTitle>
+      ) : (
+        <TrackTitle>Select a track to listen to</TrackTitle>
+      )}
+      <StyledAudioPlayer
         ref={playerRef}
         autoPlayAfterSrcChange
         src={
