@@ -6,7 +6,11 @@ import { setTracks } from '@store/Slices/TracksSlice';
 import { RootState } from '@store/store';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ErrorFindText, MusicListWrapper } from './MusicList.styled';
+import {
+  ErrorFindText,
+  MusicListWrapper,
+  TrackItemWrapper,
+} from './MusicList.styled';
 
 const ITEMS_PER_PAGE = 8;
 
@@ -73,20 +77,23 @@ const MusicList = ({
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // --- Логика состояний загрузки и ошибок ---
   if (!isValid && searchQuery) {
     return <ErrorFindText>Исправьте ошибки в поисковом запросе</ErrorFindText>;
   }
-  if (isLoading) return <Loader />;
+  if (isLoading)
+    return (
+      <MusicListWrapper>
+        <Loader />
+      </MusicListWrapper>
+    );
   if (isError) return <h1>Error loading tracks</h1>;
-
   return (
     <>
       <MusicListWrapper>
         {paginatedTracks.map((track) => (
-          <div key={track.id}>
+          <TrackItemWrapper key={track.id}>
             <Track track={track} />
-          </div>
+          </TrackItemWrapper>
         ))}
       </MusicListWrapper>
       {filteredTracks.length > ITEMS_PER_PAGE && (

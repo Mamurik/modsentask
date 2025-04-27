@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FavoriteIcon, HomeIcon } from '../Icons/Icons';
 import {
   BrandText,
@@ -30,21 +30,22 @@ const SideBar = () => {
   return (
     <>
       <MobileHeader>
-        <ModsenfyWrapper>
-          <Logo src="/img/logo.svg" alt="logo" />
-          <BrandText>Modsenfy</BrandText>
-        </ModsenfyWrapper>
+        <Link to="/">
+          <ModsenfyWrapper>
+            <Logo src="/img/logo.svg" alt="logo" />
+            <BrandText>Modsenfy</BrandText>
+          </ModsenfyWrapper>
+        </Link>
         <BurgerButton onClick={toggleSidebar}>☰</BurgerButton>
       </MobileHeader>
-
       <Nav isOpen={isOpen}>
         <CloseButton onClick={toggleSidebar}>×</CloseButton>
-
-        <ModsenfyWrapper>
-          <Logo src="/img/logo.svg" alt="logo" />
-          <BrandText>Modsenfy</BrandText>
-        </ModsenfyWrapper>
-
+        <Link to="/">
+          <ModsenfyWrapper>
+            <Logo src="/img/logo.svg" alt="logo" />
+            <BrandText>Modsenfy</BrandText>
+          </ModsenfyWrapper>
+        </Link>
         <PagesWrapper>
           <DiscoverTitle>Discover</DiscoverTitle>
           <NavList>

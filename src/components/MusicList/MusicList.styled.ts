@@ -1,4 +1,15 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const fadeInUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 export const MusicListWrapper = styled.div`
   display: flex;
@@ -8,7 +19,8 @@ export const MusicListWrapper = styled.div`
   gap: 10px;
   max-width: 1200px;
   margin: 0px auto;
-  @media (max-width: 1580) {
+
+  @media (max-width: 1580px) {
     max-width: 1200px;
   }
   @media (max-width: 1090px) {
@@ -18,6 +30,10 @@ export const MusicListWrapper = styled.div`
     margin: 0px;
     padding: 0px;
   }
+`;
+
+export const TrackItemWrapper = styled.div`
+  animation: ${fadeInUp} 0.5s ease forwards;
 `;
 export const ErrorFindText = styled.h1`
   color: 'red';

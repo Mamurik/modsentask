@@ -12,6 +12,19 @@ export const TrackWrapper = styled.div`
   background: #ffffff;
   border: 1px solid rgba(153, 153, 153, 0.1);
   border-radius: 10px;
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    transform: translateY(-3px);
+  }
+
+  &:active {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+    transform: translateY(0);
+  }
 
   @media (max-width: 768px) {
     margin: 10px 5px;

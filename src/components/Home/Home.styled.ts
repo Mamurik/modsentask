@@ -66,7 +66,6 @@ export const MusicPlayerWrapper = styled.div`
   right: 60px;
   width: 500px;
   transform: translateY(-50%);
-  z-index: 10;
 
   @media (max-width: 1200px) {
     width: 450px;
