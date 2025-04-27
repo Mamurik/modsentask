@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useCallback } from 'react';
 import { Control, Controller, FieldValues } from 'react-hook-form';
 import { ErrorMessage, MyInput, MyInputWrapper } from './SearchInput.styled';
 
@@ -12,6 +12,14 @@ interface SearchInputProps {
 }
 
 const SearchInput = ({ control, placeholder }: SearchInputProps) => {
+  const handleChange = useCallback(
+    (onChange: (value: string) => void) =>
+      (e: ChangeEvent<HTMLInputElement>) => {
+        onChange(e.target.value);
+      },
+    []
+  );
+
   return (
     <MyInputWrapper>
       <Controller
@@ -23,9 +31,7 @@ const SearchInput = ({ control, placeholder }: SearchInputProps) => {
               maxLength={51}
               placeholder={placeholder}
               value={field.value || ''}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                field.onChange(e.target.value)
-              }
+              onChange={handleChange(field.onChange)}
               $hasError={!!error}
             />
             {error && <ErrorMessage>{error.message}</ErrorMessage>}

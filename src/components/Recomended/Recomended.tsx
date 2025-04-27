@@ -1,6 +1,6 @@
 import { useGetRecommendedQuery } from '@api/Tracks.api';
-
 import Track from '@components/Track/Track';
+import { useMemo } from 'react';
 import {
   RecommendedList,
   RecommendedText,
@@ -8,13 +8,29 @@ import {
 } from './Recommended.styled';
 
 const Recommended = () => {
-  const { data } = useGetRecommendedQuery();
+  const { data = [], isLoading, error } = useGetRecommendedQuery();
+
+  const tracks = useMemo(() => data, [data]);
+
+  if (isLoading) {
+    return <RecommendedWrapper>Loading...</RecommendedWrapper>;
+  }
+
+  if (error) {
+    return (
+      <RecommendedWrapper>Failed to load recommendations.</RecommendedWrapper>
+    );
+  }
+
+  if (!tracks.length) {
+    return <RecommendedWrapper>No recommendations found.</RecommendedWrapper>;
+  }
 
   return (
     <RecommendedWrapper>
       <RecommendedText>Recommended</RecommendedText>
       <RecommendedList>
-        {data?.map((track) => (
+        {tracks.map((track) => (
           <Track
             key={track.id}
             track={track}

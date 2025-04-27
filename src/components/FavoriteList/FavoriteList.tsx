@@ -1,9 +1,13 @@
+import { memo, useCallback, useMemo, useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import Track from '@components/Track/Track';
 import Pagination from '@components/UI/Pagination/Pagination';
 import { RootState } from '@store/store';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+
 import { FavoriteListWrapper, FavoriteNullText } from './FavoriteList.styled';
+
+const tracksPerPage = 8;
 
 const FavoriteList = () => {
   const favoriteTrackIds = useSelector(
@@ -11,25 +15,25 @@ const FavoriteList = () => {
   );
   const tracks = useSelector((state: RootState) => state.tracks.tracks);
 
-  const favoriteTracks = tracks.filter((track) =>
-    favoriteTrackIds.includes(track.id)
-  );
-
   const [currentPage, setCurrentPage] = useState(1);
-  const tracksPerPage = 8;
 
-  const totalPages = Math.ceil(favoriteTracks.length / tracksPerPage);
+  const favoriteTracks = useMemo(() => {
+    return tracks.filter((track) => favoriteTrackIds.includes(track.id));
+  }, [favoriteTrackIds, tracks]);
 
-  const indexOfLastTrack = currentPage * tracksPerPage;
-  const indexOfFirstTrack = indexOfLastTrack - tracksPerPage;
-  const currentTracks = favoriteTracks.slice(
-    indexOfFirstTrack,
-    indexOfLastTrack
-  );
+  const totalPages = useMemo(() => {
+    return Math.ceil(favoriteTracks.length / tracksPerPage);
+  }, [favoriteTracks.length]);
 
-  const handlePageChange = (page: number) => {
+  const currentTracks = useMemo(() => {
+    const indexOfLastTrack = currentPage * tracksPerPage;
+    const indexOfFirstTrack = indexOfLastTrack - tracksPerPage;
+    return favoriteTracks.slice(indexOfFirstTrack, indexOfLastTrack);
+  }, [currentPage, favoriteTracks]);
+
+  const handlePageChange = useCallback((page: number) => {
     setCurrentPage(page);
-  };
+  }, []);
 
   if (favoriteTracks.length === 0) {
     return <FavoriteNullText>Нет избранных треков</FavoriteNullText>;
@@ -49,6 +53,7 @@ const FavoriteList = () => {
           />
         ))}
       </FavoriteListWrapper>
+
       {totalPages > 1 && (
         <Pagination
           currentPage={currentPage}
@@ -60,4 +65,4 @@ const FavoriteList = () => {
   );
 };
 
-export default FavoriteList;
+export default memo(FavoriteList);

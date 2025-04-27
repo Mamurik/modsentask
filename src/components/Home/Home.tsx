@@ -1,12 +1,15 @@
+import { yupResolver } from '@hookform/resolvers/yup';
+import { memo, useCallback, useEffect, useState } from 'react';
+import { FieldValues, useForm } from 'react-hook-form';
+
 import MusicList from '@components/MusicList/MusicList';
 import Recommended from '@components/Recomended/Recomended';
 import MusicPlayer from '@components/UI/MusicPlayer/MusicPlayer';
 import SearchInput from '@components/UI/SearchInput/SearchInput';
-import { searchSchema } from '@components/UI/SearchInput/searchValidation';
 import Select from '@components/UI/Select/Select';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useEffect, useState } from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
+
+import { searchSchema } from '@components/UI/SearchInput/searchValidation';
+
 import {
   HomeMusicImage,
   HomeWrapper,
@@ -34,9 +37,7 @@ const Home = () => {
   } = useForm<SearchFormData>({
     resolver: yupResolver(searchSchema),
     mode: 'onChange',
-    defaultValues: {
-      search: '',
-    },
+    defaultValues: { search: '' },
   });
 
   useEffect(() => {
@@ -51,10 +52,12 @@ const Home = () => {
       setDebouncedSearchQuery(searchQuery);
     }, 500);
 
-    return () => {
-      clearTimeout(timerId);
-    };
+    return () => clearTimeout(timerId);
   }, [searchQuery]);
+
+  const handleSortSelect = useCallback((value: string) => {
+    setSortType(value);
+  }, []);
 
   return (
     <HomeWrapper>
@@ -64,31 +67,34 @@ const Home = () => {
           placeholder="Search artist, title, album"
         />
       </InputWrapper>
+
       <ImagePlayerWrapper>
         <SelectGroup>
           <SelectTitle>Sort by</SelectTitle>
           <Select
             options={['relevance', 'popular', 'recent']}
-            onSelect={(value) => setSortType(value)}
+            onSelect={handleSortSelect}
           />
         </SelectGroup>
 
         <MusicPlayerWrapper>
           <MusicPlayer />
         </MusicPlayerWrapper>
+
         <HomeMusicImage src="img/home/HomeMusic.png" />
       </ImagePlayerWrapper>
 
       <ResultText>Search results</ResultText>
+
       <MusicList
         searchQuery={debouncedSearchQuery}
         isValid={isValid}
         sortType={sortType}
       />
 
-      <Recommended></Recommended>
+      <Recommended />
     </HomeWrapper>
   );
 };
 
-export default Home;
+export default memo(Home);

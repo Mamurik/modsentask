@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import {
   Arrow,
@@ -13,19 +13,22 @@ interface SelectProps {
   onSelect: (value: string) => void;
 }
 
-const Select: React.FC<SelectProps> = ({ options, onSelect }) => {
+const Select = ({ options, onSelect }: SelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<string>('Select Item');
+  const [selectedOption, setSelectedOption] = useState('Select Item');
 
-  const toggleOptions = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleOptions = useCallback(() => {
+    setIsOpen((prev) => !prev);
+  }, []);
 
-  const handleOptionClick = (option: string) => {
-    setSelectedOption(option);
-    onSelect(option);
-    setIsOpen(false);
-  };
+  const handleOptionClick = useCallback(
+    (option: string) => {
+      setSelectedOption(option);
+      onSelect(option);
+      setIsOpen(false);
+    },
+    [onSelect]
+  );
 
   return (
     <SelectWrapper>
@@ -33,6 +36,7 @@ const Select: React.FC<SelectProps> = ({ options, onSelect }) => {
         {selectedOption}
         <Arrow>{isOpen ? <FaChevronUp /> : <FaChevronDown />}</Arrow>
       </SelectButton>
+
       {isOpen && (
         <OptionsList>
           {options.map((option) => (

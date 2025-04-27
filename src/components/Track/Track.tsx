@@ -7,7 +7,7 @@ import { toggleFavorite } from '@store/Slices/FavoritesSlice';
 import { setSelectedTrack, togglePlayPause } from '@store/Slices/TracksSlice';
 import { RootState } from '@store/store';
 import { ITrack } from '@types';
-import { FC } from 'react';
+import { FC, memo, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   IconLike,
@@ -44,24 +44,30 @@ const Track: FC<TrackProps> = ({
   );
   const isPlaying = useSelector((state: RootState) => state.tracks.isPlaying);
 
-  const isLiked = favoriteIds.includes(track.id);
-  const isCurrentTrack = selectedTrack?.id === track.id;
+  const isLiked = useMemo(
+    () => favoriteIds.includes(track.id),
+    [favoriteIds, track.id]
+  );
+  const isCurrentTrack = useMemo(
+    () => selectedTrack?.id === track.id,
+    [selectedTrack, track.id]
+  );
 
-  const handleLike = () => {
+  const handleLike = useCallback(() => {
     dispatch(toggleFavorite(track.id));
-  };
+  }, [dispatch, track.id]);
 
-  const handlePlayPause = () => {
+  const handlePlayPause = useCallback(() => {
     if (isCurrentTrack) {
       dispatch(togglePlayPause());
     } else {
       dispatch(setSelectedTrack(track));
     }
-  };
+  }, [dispatch, isCurrentTrack, track]);
 
-  const handleImageClick = () => {
+  const handleImageClick = useCallback(() => {
     handlePlayPause();
-  };
+  }, [handlePlayPause]);
 
   return (
     <TrackWrapper>
@@ -95,4 +101,4 @@ const Track: FC<TrackProps> = ({
   );
 };
 
-export default Track;
+export default memo(Track);

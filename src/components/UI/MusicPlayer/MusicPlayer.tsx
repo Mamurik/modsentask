@@ -1,5 +1,5 @@
 import { RootState } from '@store/store';
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import { useSelector } from 'react-redux';
@@ -29,6 +29,10 @@ const MusicPlayer = () => {
     }
   }, [isPlaying, selectedTrack]);
 
+  const audioSrc = selectedTrack
+    ? `https://discoveryprovider.audius.co/v1/tracks/${selectedTrack.id}/stream`
+    : undefined;
+
   return (
     <PlayerWrapper>
       {selectedTrack ? (
@@ -39,11 +43,7 @@ const MusicPlayer = () => {
       <StyledAudioPlayer
         ref={playerRef}
         autoPlayAfterSrcChange
-        src={
-          selectedTrack
-            ? `https://discoveryprovider.audius.co/v1/tracks/${selectedTrack.id}/stream`
-            : undefined
-        }
+        src={audioSrc}
         showSkipControls={false}
         showJumpControls={false}
         volume={volume}
@@ -52,4 +52,4 @@ const MusicPlayer = () => {
   );
 };
 
-export default MusicPlayer;
+export default memo(MusicPlayer);

@@ -1,4 +1,5 @@
 // Pagination.tsx
+import React from 'react';
 import { PaginationButton, PaginationWrapper } from './Pagination.styled';
 
 interface PaginationProps {
@@ -30,4 +31,4 @@ const Pagination = ({
   );
 };
 
-export default Pagination;
+export default React.memo(Pagination);
