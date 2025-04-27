@@ -24,9 +24,17 @@ interface TrackProps {
   track: ITrack;
   imageWidth?: string;
   imageHeight?: string;
+  musicTop?: string;
+  musicRight?: string;
 }
 
-const Track: FC<TrackProps> = ({ track, imageWidth, imageHeight }) => {
+const Track: FC<TrackProps> = ({
+  track,
+  imageWidth,
+  imageHeight,
+  musicRight,
+  musicTop,
+}) => {
   const dispatch = useDispatch();
   const favoriteIds = useSelector(
     (state: RootState) => state.favorites.favoriteTrackIds
@@ -61,8 +69,8 @@ const Track: FC<TrackProps> = ({ track, imageWidth, imageHeight }) => {
         src={track.artwork['480x480']}
         onClick={handleImageClick}
         style={{ cursor: 'pointer' }}
-        $width={imageWidth} // Передаем размеры
-        $height={imageHeight} // Передаем размеры
+        $width={imageWidth}
+        $height={imageHeight}
       />
       <TrackInfoRow>
         <TrackText>
@@ -76,7 +84,11 @@ const Track: FC<TrackProps> = ({ track, imageWidth, imageHeight }) => {
           />
         </IconLike>
       </TrackInfoRow>
-      <MusicIconWrapper onClick={handlePlayPause} style={{ cursor: 'pointer' }}>
+      <MusicIconWrapper
+        onClick={handlePlayPause}
+        $top={musicTop}
+        $right={musicRight}
+      >
         {isCurrentTrack && isPlaying ? <MusicPlaying /> : <MusicStopped />}
       </MusicIconWrapper>
     </TrackWrapper>

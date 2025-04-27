@@ -9,13 +9,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ErrorFindText, MusicListWrapper } from './MusicList.styled';
 
 const ITEMS_PER_PAGE = 8;
-
 interface MusicListProps {
   searchQuery?: string;
   isValid?: boolean;
+  sortType?: string;
 }
 
-const MusicList = ({ searchQuery = '', isValid = true }: MusicListProps) => {
+const MusicList = ({
+  searchQuery = '',
+  isValid = true,
+  sortType = 'relevance',
+}: MusicListProps) => {
   const dispatch = useDispatch();
   const allTracks = useSelector((state: RootState) => state.tracks.tracks);
   const { isError, isLoading, data: tracksApi } = useGetTracksQuery();
@@ -30,22 +34,38 @@ const MusicList = ({ searchQuery = '', isValid = true }: MusicListProps) => {
 
   useEffect(() => {
     const lowercasedQuery = searchQuery.trim().toLowerCase();
+    let filtered = allTracks;
 
-    if (lowercasedQuery === '') {
-      setFilteredTracks(allTracks);
-      return;
+    if (lowercasedQuery !== '') {
+      filtered = allTracks.filter(
+        (track) =>
+          track.title.toLowerCase().includes(lowercasedQuery) ||
+          (track.user.name &&
+            track.user.name.toLowerCase().includes(lowercasedQuery))
+      );
     }
 
-    const filtered = allTracks.filter(
-      (track) =>
-        track.title.toLowerCase().includes(lowercasedQuery) ||
-        (track.user.name &&
-          track.user.name.toLowerCase().includes(lowercasedQuery))
-    );
+    // --- СОРТИРОВКА ---
+    switch (sortType) {
+      case 'popular':
+        filtered = [...filtered].sort(
+          (a, b) => b.favorite_count - a.favorite_count
+        );
+        break;
+      case 'recent':
+        filtered = [...filtered].sort(
+          (a, b) =>
+            new Date(b.release_date).getTime() -
+            new Date(a.release_date).getTime()
+        );
+        break;
+      default:
+        break;
+    }
 
     setFilteredTracks(filtered);
     setCurrentPage(1);
-  }, [searchQuery, allTracks]);
+  }, [searchQuery, allTracks, sortType]);
 
   const totalPages = Math.ceil(filteredTracks.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;

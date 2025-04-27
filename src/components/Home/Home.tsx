@@ -25,6 +25,7 @@ interface SearchFormData extends FieldValues {
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [debouncedSearchQuery, setDebouncedSearchQuery] = useState('');
+  const [sortType, setSortType] = useState('relevance');
 
   const {
     control,
@@ -68,7 +69,7 @@ const Home = () => {
           <SelectTitle>Sort by</SelectTitle>
           <Select
             options={['relevance', 'popular', 'recent']}
-            onSelect={() => console.log('asd')}
+            onSelect={(value) => setSortType(value)}
           />
         </SelectGroup>
 
@@ -79,7 +80,12 @@ const Home = () => {
       </ImagePlayerWrapper>
 
       <ResultText>Search results</ResultText>
-      <MusicList searchQuery={debouncedSearchQuery} isValid={isValid} />
+      <MusicList
+        searchQuery={debouncedSearchQuery}
+        isValid={isValid}
+        sortType={sortType}
+      />
+
       <Recommended></Recommended>
     </HomeWrapper>
   );

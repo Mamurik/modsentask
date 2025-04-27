@@ -7,13 +7,15 @@ export const NotFoundWrapper = styled.div`
   margin-top: 150px;
   padding: 0 16px;
   text-align: center;
-
+  margin-bottom: 400px;
   @media (max-width: 480px) {
     margin-top: 80px;
+    margin-bottom: 300px;
   }
 
   @media (max-width: 390px) {
     margin-top: 40px;
+    margin-bottom: 250px;
   }
 `;
 

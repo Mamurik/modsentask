@@ -1,22 +1,6 @@
 import styled from 'styled-components';
 
-export const RecommendedWrapper = styled.div`
-  margin-left: 32px;
-  @media (max-width: 1090px) {
-    margin-left: 0px;
-  }
-`;
-
-export const RecommendedText = styled.div`
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 29px;
-  color: #121212;
-  margin: 40px 0px;
-`;
-export const RecommendedList = styled.div`
+export const FavoriteListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -35,4 +19,14 @@ export const RecommendedList = styled.div`
     max-width: 300px;
     margin: 0px auto;
   }
+`;
+export const FavoriteNullText = styled.h1`
+  text-align: center;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 44px;
+  line-height: 53px;
+  color: #121212;
+  margin: 200px 0px;
 `;

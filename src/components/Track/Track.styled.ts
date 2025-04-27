@@ -76,8 +76,9 @@ export const IconLike = styled.div`
   cursor: pointer;
   flex-shrink: 0;
 `;
-export const MusicIconWrapper = styled.div`
+export const MusicIconWrapper = styled.div<{ $top?: string; $right?: string }>`
   position: absolute;
-  right: 30px;
-  top: 50px;
+  right: ${({ $right }) => $right || '30px'};
+  top: ${({ $top }) => $top || '50px'};
+  cursor: pointer;
 `;

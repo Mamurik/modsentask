@@ -1,32 +1,14 @@
 import { useGetRecommendedQuery } from '@api/Tracks.api';
 
 import Track from '@components/Track/Track';
-import Loader from '@components/UI/Loader/Loader';
 import {
-  ErrorText,
   RecommendedList,
   RecommendedText,
   RecommendedWrapper,
 } from './Recommended.styled';
 
 const Recommended = () => {
-  const { isError, isLoading, data } = useGetRecommendedQuery();
-
-  if (isLoading) {
-    return (
-      <RecommendedWrapper>
-        <Loader />
-      </RecommendedWrapper>
-    );
-  }
-
-  if (isError) {
-    return (
-      <RecommendedWrapper>
-        <ErrorText>Something went wrong. Please try again later.</ErrorText>
-      </RecommendedWrapper>
-    );
-  }
+  const { data } = useGetRecommendedQuery();
 
   return (
     <RecommendedWrapper>
@@ -38,6 +20,8 @@ const Recommended = () => {
             track={track}
             imageWidth="170px"
             imageHeight="170px"
+            musicTop="135px"
+            musicRight="55px"
           />
         ))}
       </RecommendedList>
