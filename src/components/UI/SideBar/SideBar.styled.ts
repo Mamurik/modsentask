@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
-export const Nav = styled.nav<{ isOpen?: boolean }>`
+export const Nav = styled.nav.withConfig({
+  shouldForwardProp: (prop) => prop !== 'isOpen',
+})<{ isOpen?: boolean }>`
   position: fixed;
   left: 0;
   top: 0;
@@ -27,12 +29,11 @@ export const MobileHeader = styled.div`
   background: #fff;
   padding: 12px 16px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-
+  z-index: 2;
   @media (max-width: 480px) {
     display: flex;
   }
 `;
-
 export const BurgerButton = styled.button`
   font-size: 26px;
   background: none;
@@ -90,6 +91,7 @@ export const NavList = styled.ul`
   padding: 0;
   margin: 0;
 `;
+
 export const NavItem = styled(Link)<{ $active?: boolean }>`
   display: flex;
   align-items: center;
@@ -97,7 +99,9 @@ export const NavItem = styled(Link)<{ $active?: boolean }>`
   padding: 17px 24px;
   margin-bottom: 12px;
   text-decoration: none;
-  transition: background 0.3s;
+  transition:
+    background 0.3s,
+    color 0.3s;
 
   ${({ $active }) =>
     $active
@@ -105,7 +109,10 @@ export const NavItem = styled(Link)<{ $active?: boolean }>`
           background: linear-gradient(90deg, #3dc3c0 -15.19%, #8568f5 111.92%);
         `
       : css`
-          border: 1px solid black;
+          &:hover {
+            background: rgba(133, 104, 245, 0.1);
+            color: #8568f5;
+          }
         `}
 `;
 

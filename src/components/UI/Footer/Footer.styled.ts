@@ -108,7 +108,6 @@ export const ListTitle = styled.li`
   color: #ffffff;
   margin-bottom: 18px;
 `;
-
 export const ListItem = styled.li`
   font-family: 'Inter';
   font-style: normal;
@@ -121,6 +120,18 @@ export const ListItem = styled.li`
   a {
     color: inherit;
     text-decoration: none;
+    transition:
+      color 0.3s ease,
+      text-decoration 0.3s ease;
+  }
+
+  a:hover {
+    color: orange;
+    text-decoration: underline;
+  }
+
+  a:active {
+    color: #ff6600;
   }
 `;
 
