@@ -10,6 +10,7 @@ import Select from '@components/UI/Select/Select';
 
 import { searchSchema } from '@components/UI/SearchInput/searchValidation';
 
+import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
 import {
   HomeMusicImage,
   HomeWrapper,
@@ -86,11 +87,13 @@ const Home = () => {
 
       <ResultText>Search results</ResultText>
 
-      <MusicList
-        searchQuery={debouncedSearchQuery}
-        isValid={isValid}
-        sortType={sortType}
-      />
+      <ErrorBoundary fallback={<h1>Ошибка при загрузке треков 🎵</h1>}>
+        <MusicList
+          searchQuery={debouncedSearchQuery}
+          isValid={isValid}
+          sortType={sortType}
+        />
+      </ErrorBoundary>
 
       <Recommended />
     </HomeWrapper>

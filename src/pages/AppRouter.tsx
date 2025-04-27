@@ -1,3 +1,4 @@
+import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
 import Layout from '@components/UI/Layout/Layout';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ColorsPage from './ColorsPage';
@@ -14,7 +15,11 @@ export const AppRouter = () => {
           path="/"
           element={
             <Layout>
-              <HomePage />
+              <ErrorBoundary
+                fallback={<div>Что-то пошло не так на главной 🙈</div>}
+              >
+                <HomePage />
+              </ErrorBoundary>
             </Layout>
           }
         />
@@ -22,7 +27,11 @@ export const AppRouter = () => {
           path="/favorite"
           element={
             <Layout>
-              <FavoritePage />
+              <ErrorBoundary
+                fallback={<div>Не удалось загрузить избранное 🙈</div>}
+              >
+                <FavoritePage />
+              </ErrorBoundary>
             </Layout>
           }
         />
@@ -34,8 +43,26 @@ export const AppRouter = () => {
             </Layout>
           }
         />
-        <Route path="/colors" element={<ColorsPage />} />
-        <Route path="icons" element={<IconsPage />} />
+        <Route
+          path="/colors"
+          element={
+            <ErrorBoundary
+              fallback={<div>Ошибка при загрузке страницы с цветами 🙈</div>}
+            >
+              <ColorsPage />
+            </ErrorBoundary>
+          }
+        />
+        <Route
+          path="/icons"
+          element={
+            <ErrorBoundary
+              fallback={<div>Ошибка при загрузке страницы с иконками 🙈</div>}
+            >
+              <IconsPage />
+            </ErrorBoundary>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
