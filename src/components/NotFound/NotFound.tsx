@@ -1,4 +1,4 @@
-import { NotFoundText, NotFoundWrapper } from './NotFound.styled';
+import { NotFoundText, NotFoundWrapper } from './styled';
 
 const NotFound = () => {
   return (

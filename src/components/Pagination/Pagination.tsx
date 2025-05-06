@@ -1,6 +1,6 @@
-// Pagination.tsx
 import React from 'react';
-import { PaginationButton, PaginationWrapper } from './Pagination.styled';
+
+import { PaginationButton, PaginationWrapper } from './styled';
 
 interface PaginationProps {
   currentPage: number;

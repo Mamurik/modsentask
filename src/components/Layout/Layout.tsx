@@ -1,7 +1,7 @@
-import Content from '@components/UI/Content/Content';
-import Footer from '@components/UI/Footer/Footer';
-import Header from '@components/UI/Header/Header';
-import Sidebar from '@components/UI/SideBar/SideBar';
+import Content from '@components/Content/Content';
+import Footer from '@components/Footer/Footer';
+import Header from '@components/Header/Header';
+import Sidebar from '@components/SideBar/SideBar';
 import React, { FC } from 'react';
 interface LayoutProps {
   children: React.ReactNode;

@@ -1,16 +1,13 @@
 import { useGetTracksQuery } from '@api/Tracks.api';
+import Loader from '@components/Loader/Loader';
+import Pagination from '@components/Pagination/Pagination';
 import Track from '@components/Track/Track';
-import Loader from '@components/UI/Loader/Loader';
-import Pagination from '@components/UI/Pagination/Pagination';
 import { setTracks } from '@store/Slices/TracksSlice';
 import { RootState } from '@store/store';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  ErrorFindText,
-  MusicListWrapper,
-  TrackItemWrapper,
-} from './MusicList.styled';
+
+import { ErrorFindText, MusicListWrapper, TrackItemWrapper } from './styled';
 
 const ITEMS_PER_PAGE = 8;
 

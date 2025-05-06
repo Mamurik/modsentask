@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+
 import { FavoriteIcon, HomeIcon } from '../Icons/Icons';
 import {
   BrandText,
@@ -15,7 +16,7 @@ import {
   NavItem,
   NavList,
   PagesWrapper,
-} from './SideBar.styled';
+} from './styled';
 
 const SideBar = () => {
   const [isOpen, setIsOpen] = useState(false);

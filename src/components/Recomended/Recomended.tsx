@@ -1,20 +1,14 @@
 import { useGetRecommendedQuery } from '@api/Tracks.api';
+import Loader from '@components/Loader/Loader';
 import Track from '@components/Track/Track';
 import { useMemo } from 'react';
-import {
-  RecommendedList,
-  RecommendedText,
-  RecommendedWrapper,
-} from './Recommended.styled';
+
+import { RecommendedList, RecommendedText, RecommendedWrapper } from './styled';
 
 const Recommended = () => {
   const { data = [], isLoading, error } = useGetRecommendedQuery();
 
   const tracks = useMemo(() => data, [data]);
-
-  if (isLoading) {
-    return <RecommendedWrapper>Loading...</RecommendedWrapper>;
-  }
 
   if (error) {
     return (
@@ -22,6 +16,13 @@ const Recommended = () => {
     );
   }
 
+  if (isLoading) {
+    return (
+      <RecommendedWrapper>
+        <Loader></Loader>
+      </RecommendedWrapper>
+    );
+  }
   if (!tracks.length) {
     return <RecommendedWrapper>No recommendations found.</RecommendedWrapper>;
   }

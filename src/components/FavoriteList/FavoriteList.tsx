@@ -1,11 +1,10 @@
+import Pagination from '@components/Pagination/Pagination';
+import Track from '@components/Track/Track';
+import { RootState } from '@store/store';
 import { memo, useCallback, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import Track from '@components/Track/Track';
-import Pagination from '@components/UI/Pagination/Pagination';
-import { RootState } from '@store/store';
-
-import { FavoriteListWrapper, FavoriteNullText } from './FavoriteList.styled';
+import { FavoriteListWrapper, FavoriteNullText } from './styled';
 
 const tracksPerPage = 8;
 

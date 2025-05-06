@@ -4,10 +4,10 @@ import * as yup from 'yup';
 export const searchSchema = yup.object().shape({
   search: yup
     .string()
-    .required(' ')
-    .min(1, 'Минимум 1 символ1')
-    .max(50, 'Максимум 50 символов')
-    .matches(/^[a-zA-Z0-9\s]+$/, 'Только буквы и цифры без спецсимволов')
+    .required('')
+    .min(2, 'Minimum 2 letters')
+    .max(50, 'Maximum 50 letters')
+    .matches(/^[a-zA-Z0-9\s]+$/, 'Only letters without symbols')
     .test('empty-check', '', (value) => {
       return value === '' || value.length >= 1;
     }),

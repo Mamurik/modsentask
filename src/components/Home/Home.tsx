@@ -1,16 +1,14 @@
+import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
+import MusicList from '@components/MusicList/MusicList';
+import MusicPlayer from '@components/MusicPlayer/MusicPlayer';
+import Recommended from '@components/Recomended/Recomended';
+import SearchInput from '@components/SearchInput/SearchInput';
+import Select from '@components/Select/Select';
+import { searchSchema } from '@constants/searchValidation';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { memo, useCallback, useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 
-import MusicList from '@components/MusicList/MusicList';
-import Recommended from '@components/Recomended/Recomended';
-import MusicPlayer from '@components/UI/MusicPlayer/MusicPlayer';
-import SearchInput from '@components/UI/SearchInput/SearchInput';
-import Select from '@components/UI/Select/Select';
-
-import { searchSchema } from '@components/UI/SearchInput/searchValidation';
-
-import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
 import {
   HomeMusicImage,
   HomeWrapper,
@@ -20,7 +18,7 @@ import {
   ResultText,
   SelectGroup,
   SelectTitle,
-} from './Home.styled';
+} from './styled';
 
 interface SearchFormData extends FieldValues {
   search: string;

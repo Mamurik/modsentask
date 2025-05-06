@@ -1,14 +1,11 @@
-import {
-  LikeIcon,
-  MusicPlaying,
-  MusicStopped,
-} from '@components/UI/Icons/Icons';
+import { LikeIcon, MusicPlaying, MusicStopped } from '@components/Icons/Icons';
 import { toggleFavorite } from '@store/Slices/FavoritesSlice';
 import { setSelectedTrack, togglePlayPause } from '@store/Slices/TracksSlice';
 import { RootState } from '@store/store';
 import { ITrack } from '@types';
 import { FC, memo, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import {
   IconLike,
   MusicIconWrapper,
@@ -18,7 +15,7 @@ import {
   TrackText,
   TrackTitle,
   TrackWrapper,
-} from './Track.styled';
+} from './styled';
 
 interface TrackProps {
   track: ITrack;

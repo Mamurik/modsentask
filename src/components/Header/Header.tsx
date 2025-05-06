@@ -1,4 +1,4 @@
-import { HeaderContainer, HeaderImage, HeaderText } from './Header.styled';
+import { HeaderContainer, HeaderImage, HeaderText } from './styled';
 
 const Header = () => {
   return (

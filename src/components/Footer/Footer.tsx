@@ -11,7 +11,7 @@ import {
   ListTitle,
   NavList,
   RightGroup,
-} from './Footer.styled';
+} from './styled';
 
 const Footer = () => {
   return (

@@ -1,6 +1,7 @@
 import { ChangeEvent, useCallback } from 'react';
 import { Control, Controller, FieldValues } from 'react-hook-form';
-import { ErrorMessage, MyInput, MyInputWrapper } from './SearchInput.styled';
+
+import { ErrorMessage, MyInput, MyInputWrapper } from './styled';
 
 interface SearchFormData extends FieldValues {
   search: string;

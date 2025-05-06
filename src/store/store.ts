@@ -1,5 +1,6 @@
 import { trackApi } from '@api/Tracks.api';
 import { configureStore } from '@reduxjs/toolkit';
+
 import FavoritesSlice from './Slices/FavoritesSlice';
 import TracksSlice from './Slices/TracksSlice';
 

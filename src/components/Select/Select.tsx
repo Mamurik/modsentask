@@ -1,12 +1,13 @@
 import { useCallback, useState } from 'react';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+
 import {
   Arrow,
   OptionItem,
   OptionsList,
   SelectButton,
   SelectWrapper,
-} from './Select.styled';
+} from './styled';
 
 interface SelectProps {
   options: string[];
