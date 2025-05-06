@@ -75,7 +75,9 @@ const MusicList = ({
   }, []);
 
   if (!isValid && searchQuery) {
-    return <ErrorFindText>Исправьте ошибки в поисковом запросе</ErrorFindText>;
+    return (
+      <ErrorFindText>Correct the errors in your search query</ErrorFindText>
+    );
   }
   if (isLoading)
     return (

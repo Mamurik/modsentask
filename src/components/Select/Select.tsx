@@ -31,6 +31,14 @@ const Select = ({ options, onSelect }: SelectProps) => {
     [onSelect]
   );
 
+  const renderOptions = () => {
+    return options.map((option) => (
+      <OptionItem key={option} onClick={() => handleOptionClick(option)}>
+        {option}
+      </OptionItem>
+    ));
+  };
+
   return (
     <SelectWrapper>
       <SelectButton onClick={toggleOptions}>
@@ -38,15 +46,7 @@ const Select = ({ options, onSelect }: SelectProps) => {
         <Arrow>{isOpen ? <FaChevronUp /> : <FaChevronDown />}</Arrow>
       </SelectButton>
 
-      {isOpen && (
-        <OptionsList>
-          {options.map((option) => (
-            <OptionItem key={option} onClick={() => handleOptionClick(option)}>
-              {option}
-            </OptionItem>
-          ))}
-        </OptionsList>
-      )}
+      {isOpen && <OptionsList>{renderOptions()}</OptionsList>}
     </SelectWrapper>
   );
 };

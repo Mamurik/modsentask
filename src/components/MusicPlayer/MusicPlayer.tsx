@@ -18,9 +18,7 @@ const MusicPlayer = () => {
   useEffect(() => {
     if (playerRef.current?.audio?.current) {
       if (isPlaying) {
-        playerRef.current.audio.current.play().catch((e) => {
-          console.warn('Auto-play blocked by browser:', e);
-        });
+        playerRef.current.audio.current.play().catch(() => {});
       } else {
         playerRef.current.audio.current.pause();
       }

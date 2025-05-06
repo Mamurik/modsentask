@@ -1,4 +1,3 @@
-// HomeIcon.tsx
 type IconProps = {
   color?: string;
   size?: number;
@@ -14,7 +13,6 @@ export const HomeIcon = ({ color = '#999999', size = 20 }: IconProps) => (
   </svg>
 );
 
-// FavoriteIcon.tsx
 export const FavoriteIcon = ({ color = '#999999', size = 20 }: IconProps) => (
   <svg width={size} height={size} viewBox="0 0 20 20" fill="none">
     <path

@@ -1,4 +1,3 @@
-// MusicPlayer.styled.ts
 import AudioPlayer from 'react-h5-audio-player';
 import styled from 'styled-components';
 

@@ -20,6 +20,8 @@
       "@pages/*": ["pages/*"],
       "@store/*": ["store/*"],
       "@hooks/*": ["hooks/*"],
+      "@utils/*": ["utils/*"],
+      "@styles/*": ["styles/*"],
       "@types": ["types/types.ts"]
     },
 

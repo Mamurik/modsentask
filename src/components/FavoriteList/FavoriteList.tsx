@@ -35,7 +35,7 @@ const FavoriteList = () => {
   }, []);
 
   if (favoriteTracks.length === 0) {
-    return <FavoriteNullText>Нет избранных треков</FavoriteNullText>;
+    return <FavoriteNullText>No favorites tracks</FavoriteNullText>;
   }
 
   return (

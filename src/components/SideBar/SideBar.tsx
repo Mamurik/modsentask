@@ -1,3 +1,4 @@
+import { images } from '@utils/images';
 import { useCallback, useMemo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -43,7 +44,7 @@ const SideBar = () => {
         <CloseButton onClick={toggleSidebar}>×</CloseButton>
         <Link to="/">
           <ModsenfyWrapper>
-            <Logo src="/img/logo.svg" alt="logo" />
+            <Logo src={images.logo} alt="logo" />
             <BrandText>Modsenfy</BrandText>
           </ModsenfyWrapper>
         </Link>

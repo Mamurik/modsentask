@@ -15,7 +15,7 @@ export const MyInput = styled.input<InputProps>`
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 16px;
-  background: url('/img/search.svg') no-repeat 14px center;
+  background: url('/src/assets/img/search.svg') no-repeat 14px center;
   background-size: 20px 20px;
   margin-bottom: 20px;
 

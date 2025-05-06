@@ -1,3 +1,4 @@
+import { theme } from '@styles/theme';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
@@ -106,7 +107,7 @@ export const NavItem = styled(Link)<{ $active?: boolean }>`
   ${({ $active }) =>
     $active
       ? css`
-          background: linear-gradient(90deg, #3dc3c0 -15.19%, #8568f5 111.92%);
+          background: ${theme.colors.gradient};
         `
       : css`
           &:hover {

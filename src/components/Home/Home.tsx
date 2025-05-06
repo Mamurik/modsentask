@@ -1,13 +1,14 @@
 import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
 import MusicList from '@components/MusicList/MusicList';
 import MusicPlayer from '@components/MusicPlayer/MusicPlayer';
-import Recommended from '@components/Recomended/Recomended';
+import Recommended from '@components/Recommended/Recommended';
 import SearchInput from '@components/SearchInput/SearchInput';
 import Select from '@components/Select/Select';
 import { searchSchema } from '@constants/searchValidation';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { images } from '@utils/images';
 import { memo, useCallback, useEffect, useState } from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 import {
   HomeMusicImage,
@@ -20,7 +21,7 @@ import {
   SelectTitle,
 } from './styled';
 
-interface SearchFormData extends FieldValues {
+interface SearchFormData {
   search: string;
 }
 
@@ -80,12 +81,12 @@ const Home = () => {
           <MusicPlayer />
         </MusicPlayerWrapper>
 
-        <HomeMusicImage src="img/home/HomeMusic.png" />
+        <HomeMusicImage src={images.home} />
       </ImagePlayerWrapper>
 
       <ResultText>Search results</ResultText>
 
-      <ErrorBoundary fallback={<h1>Ошибка при загрузке треков 🎵</h1>}>
+      <ErrorBoundary fallback={<h1>Oops something went wrong</h1>}>
         <MusicList
           searchQuery={debouncedSearchQuery}
           isValid={isValid}

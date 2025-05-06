@@ -1,4 +1,4 @@
-// Pagination.styled.ts
+import { theme } from '@styles/theme';
 import styled from 'styled-components';
 
 export const PaginationWrapper = styled.div`
@@ -20,7 +20,7 @@ export const PaginationButton = styled.button`
   padding: 8px 16px;
   color: rgba(61, 195, 192, 1);
   background-color: transparent;
-  border: 1px solid rgba(61, 195, 192, 1);
+  border: 1px solid ${theme.colors.primary};
   border-radius: 4px;
   cursor: pointer;
   font-family: 'Inter', sans-serif;

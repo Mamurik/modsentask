@@ -1,3 +1,5 @@
+import { images } from '@utils/images';
+
 import {
   FooterBottom,
   FooterInner,
@@ -12,14 +14,13 @@ import {
   NavList,
   RightGroup,
 } from './styled';
-
 const Footer = () => {
   return (
     <FooterWrapper>
       <FooterInner>
         <LeftRightWrapper>
           <LeftGroup>
-            <img src="img/footer/modsenfy.png" alt="Modsenfy logo" />
+            <img src={images.modsenfy} alt="Modsenfy logo" />
             <LeftText>
               We have sounds that capture every mood and inspire every vision.
               From soothing melodies to electrifying beats.
@@ -67,16 +68,16 @@ const Footer = () => {
         <FooterBottom>
           <LinkList>
             <LinkItem href="https://x.com/modsencompany">
-              <img src="img/footer/twt.svg" alt="twt" />
+              <img src={images.twt} alt="twt" />
             </LinkItem>
             <LinkItem href="https://www.facebook.com/ModsenSoftware/?locale=ru_RU">
-              <img src="img/footer/fb.svg" alt="Facebook" />
+              <img src={images.fb} alt="Facebook" />
             </LinkItem>
             <LinkItem href="https://www.instagram.com/modsencompany/">
-              <img src="img/footer/inst.svg" alt="Instagram" />
+              <img src={images.inst} alt="Instagram" />
             </LinkItem>
             <LinkItem href="https://github.com/Mamurik/modsenfy">
-              <img src="img/footer/git.svg" alt="GitHub" />
+              <img src={images.git} alt="GitHub" />
             </LinkItem>
           </LinkList>
           <p>Modsenfy © 2000–2025, All Rights Reserved</p>

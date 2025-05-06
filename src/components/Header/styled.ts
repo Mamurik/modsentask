@@ -1,3 +1,4 @@
+import { theme } from '@styles/theme';
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.header`
@@ -37,7 +38,7 @@ export const HeaderText = styled.h1`
   font-size: 55px;
   line-height: 67px;
   position: absolute;
-  color: rgba(255, 255, 255, 0.6);
+  color: ${theme.colors.gradient};
   z-index: 2;
 
   @media (max-width: 480px) {

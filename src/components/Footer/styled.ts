@@ -1,8 +1,9 @@
+import { theme } from '@styles/theme';
 import styled from 'styled-components';
 
 export const FooterWrapper = styled.footer`
   width: 100%;
-  background: linear-gradient(90deg, #3dc3c0 25.6%, #8568f5 100%);
+  background: ${theme.colors.gradient};
   padding: 40px 20px;
   position: relative;
   z-index: 12;
@@ -126,7 +127,7 @@ export const ListItem = styled.li`
   }
 
   a:hover {
-    color: orange;
+    color: ${theme.colors.orange};
     text-decoration: underline;
   }
 
