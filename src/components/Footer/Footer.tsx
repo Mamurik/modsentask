@@ -1,3 +1,4 @@
+import { footerLinks } from '@constants/footerLinks';
 import { images } from '@utils/images';
 
 import {
@@ -14,6 +15,7 @@ import {
   NavList,
   RightGroup,
 } from './styled';
+
 const Footer = () => {
   return (
     <FooterWrapper>
@@ -26,57 +28,42 @@ const Footer = () => {
               From soothing melodies to electrifying beats.
             </LeftText>
           </LeftGroup>
-          <RightGroup>
-            <NavList>
-              <ListTitle>COMPANY</ListTitle>
-              <ListItem>
-                <a href="#!">About</a>
-              </ListItem>
-              <ListItem>
-                <a href="#!">Features</a>
-              </ListItem>
-            </NavList>
-            <NavList>
-              <ListTitle>HELP</ListTitle>
-              <ListItem>
-                <a href="#!">Customer Support</a>
-              </ListItem>
-              <ListItem>
-                <a href="#!">Delivery Details</a>
-              </ListItem>
-            </NavList>
-            <NavList>
-              <ListTitle>FAQ</ListTitle>
-              <ListItem>
-                <a href="#!">Account</a>
-              </ListItem>
-              <ListItem>
-                <a href="#!">Manage Deliveries</a>
-              </ListItem>
-            </NavList>
-            <NavList>
-              <ListTitle>Resources</ListTitle>
-              <ListItem>
-                <a href="#!">Free eBooks</a>
-              </ListItem>
-              <ListItem>
-                <a href="#!">Development Tutorial</a>
-              </ListItem>
-            </NavList>
+
+          <RightGroup aria-label="Footer navigation">
+            {footerLinks.map(({ title, items }) => (
+              <NavList key={title}>
+                <ListTitle>{title}</ListTitle>
+                {items.map((item) => (
+                  <ListItem key={item}>
+                    <a href="#!">{item}</a>
+                  </ListItem>
+                ))}
+              </NavList>
+            ))}
           </RightGroup>
         </LeftRightWrapper>
+
         <FooterBottom>
           <LinkList>
-            <LinkItem href="https://x.com/modsencompany">
-              <img src={images.twt} alt="twt" />
+            <LinkItem href="https://x.com/modsencompany" aria-label="Twitter">
+              <img src={images.twt} alt="Twitter" />
             </LinkItem>
-            <LinkItem href="https://www.facebook.com/ModsenSoftware/?locale=ru_RU">
+            <LinkItem
+              href="https://www.facebook.com/ModsenSoftware/"
+              aria-label="Facebook"
+            >
               <img src={images.fb} alt="Facebook" />
             </LinkItem>
-            <LinkItem href="https://www.instagram.com/modsencompany/">
+            <LinkItem
+              href="https://www.instagram.com/modsencompany/"
+              aria-label="Instagram"
+            >
               <img src={images.inst} alt="Instagram" />
             </LinkItem>
-            <LinkItem href="https://github.com/Mamurik/modsenfy">
+            <LinkItem
+              href="https://github.com/Mamurik/modsenfy"
+              aria-label="GitHub"
+            >
               <img src={images.git} alt="GitHub" />
             </LinkItem>
           </LinkList>

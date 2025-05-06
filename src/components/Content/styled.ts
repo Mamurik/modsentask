@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledContent = styled.div`
-  margin: 39px 0px 39px 270px;
+  margin: 40px 0px 40px 270px;
   position: relative;
   overflow: hidden;
   height: auto;

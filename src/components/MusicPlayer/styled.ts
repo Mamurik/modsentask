@@ -1,38 +1,40 @@
 import AudioPlayer from 'react-h5-audio-player';
 import styled from 'styled-components';
 
-export const PlayerWrapper = styled.div`
+const FONT_SIZES = {
+  desktop: '1.5rem',
+  mobile: '1.25rem',
+};
+
+const COLORS = {
+  textPrimary: '#121212',
+};
+export const PlayerWrapper = styled.section`
   position: relative;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   box-sizing: border-box;
 
   .rhap_additional-controls .rhap_repeat-button {
     display: none;
   }
-
-  @media (max-width: 768px) {
-  }
-
-  @media (max-width: 390px) {
-  }
 `;
 
 export const StyledAudioPlayer = styled(AudioPlayer)`
-  border-radius: 20px;
+  border-radius: 1.25rem;
   overflow: hidden;
 `;
 
-export const TrackTitle = styled.div`
-  font-family: 'Inter';
+export const TrackTitle = styled.h2`
+  font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 300;
-  font-size: 24px;
-  line-height: 29px;
-  color: #121212;
-  height: 29px;
-  margin-bottom: 13px;
+  font-size: ${FONT_SIZES.desktop};
+  line-height: 1.2;
+  color: ${COLORS.textPrimary};
+  margin-bottom: 0.8rem;
+
   @media (max-width: 390px) {
-    font-size: 20px;
-    margin-bottom: 8px;
+    font-size: ${FONT_SIZES.mobile};
+    margin-bottom: 0.5rem;
   }
 `;

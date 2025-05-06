@@ -7,9 +7,12 @@ import { RootState } from '@store/store';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { ErrorFindText, MusicListWrapper, TrackItemWrapper } from './styled';
-
-const ITEMS_PER_PAGE = 8;
+import {
+  ErrorFindText,
+  MusicListWrapper,
+  NotFoundText,
+  TrackItemWrapper,
+} from './styled';
 
 interface MusicListProps {
   searchQuery?: string;
@@ -26,7 +29,7 @@ const MusicList = ({
   const { isLoading, isError, data: tracksApi } = useGetTracksQuery();
   const allTracks = useSelector((state: RootState) => state.tracks.tracks);
   const [currentPage, setCurrentPage] = useState(1);
-
+  const ITEMS_PER_PAGE = 8;
   useEffect(() => {
     if (tracksApi) {
       dispatch(setTracks(tracksApi));
@@ -79,13 +82,22 @@ const MusicList = ({
       <ErrorFindText>Correct the errors in your search query</ErrorFindText>
     );
   }
+  if (filteredTracks.length === 0) {
+    return (
+      <MusicListWrapper>
+        <NotFoundText>Tracks not found</NotFoundText>
+      </MusicListWrapper>
+    );
+  }
   if (isLoading)
     return (
       <MusicListWrapper>
         <Loader />
       </MusicListWrapper>
     );
-  if (isError) return <h1>Error loading tracks</h1>;
+
+  if (isError) return <p>Error loading tracks</p>;
+
   return (
     <>
       <MusicListWrapper>

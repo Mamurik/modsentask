@@ -1,9 +1,27 @@
 import { theme } from '@styles/theme';
+import { rem } from '@utils/rem';
 import styled from 'styled-components';
 
+export const HEADER_MARGINS = {
+  left: 270,
+  top: 86,
+  textLeft: 56,
+  mobileTop: 64,
+  mobileTextLeft: 20,
+};
+
+export const HEADER_SIZES = {
+  height: 230,
+  mobileHeight: 180,
+  font: 55,
+  lineHeight: 67,
+  mobileFont: 36,
+  mobileLineHeight: 42,
+};
+
 export const HeaderContainer = styled.header`
-  margin-left: 270px;
-  height: 230px;
+  margin-left: ${rem(HEADER_MARGINS.left)};
+  height: ${rem(HEADER_SIZES.height)};
   position: relative;
   overflow: hidden;
 
@@ -16,36 +34,39 @@ export const HeaderContainer = styled.header`
     height: 100%;
     background: linear-gradient(
       90deg,
-      rgba(61, 195, 192, 1) 0%,
-      rgba(133, 104, 245, 1) 50%
+      ${theme.colors.cyan},
+      ${theme.colors.violet}
     );
     opacity: 0.6;
     z-index: 1;
   }
-
-  @media (max-width: 480px) {
+  @media (max-width: ${rem(480)}) {
     margin-left: 0;
-    height: 180px;
+    height: ${rem(HEADER_SIZES.mobileHeight)};
+  }
+  @media (max-width: ${rem(390)}) {
+    margin-left: 0;
+    height: ${rem(HEADER_SIZES.mobileHeight)};
   }
 `;
 
-export const HeaderText = styled.h1`
-  margin-top: 86px;
-  margin-left: 56px;
-  font-family: 'Inter', sans-serif;
+export const HeaderText = styled.h2`
+  margin-top: ${rem(HEADER_MARGINS.top)};
+  margin-left: ${rem(HEADER_MARGINS.textLeft)};
+  font-family: ${theme.fontFamily};
   font-style: normal;
   font-weight: 500;
-  font-size: 55px;
-  line-height: 67px;
+  font-size: ${rem(HEADER_SIZES.font)};
+  line-height: ${rem(HEADER_SIZES.lineHeight)};
   position: absolute;
   color: ${theme.colors.gradient};
   z-index: 2;
 
-  @media (max-width: 480px) {
-    margin-top: 64px;
-    margin-left: 20px;
-    font-size: 36px;
-    line-height: 42px;
+  @media (max-width: ${rem(390)}) {
+    margin-top: ${rem(HEADER_MARGINS.mobileTop)};
+    margin-left: ${rem(HEADER_MARGINS.mobileTextLeft)};
+    font-size: ${rem(HEADER_SIZES.mobileFont)};
+    line-height: ${rem(HEADER_SIZES.mobileLineHeight)};
   }
 `;
 

@@ -6,12 +6,10 @@ import SearchInput from '@components/SearchInput/SearchInput';
 import Select from '@components/Select/Select';
 import { searchSchema } from '@constants/searchValidation';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { images } from '@utils/images';
 import { memo, useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import {
-  HomeMusicImage,
   HomeWrapper,
   ImagePlayerWrapper,
   InputWrapper,
@@ -80,13 +78,11 @@ const Home = () => {
         <MusicPlayerWrapper>
           <MusicPlayer />
         </MusicPlayerWrapper>
-
-        <HomeMusicImage src={images.home} />
       </ImagePlayerWrapper>
 
       <ResultText>Search results</ResultText>
 
-      <ErrorBoundary fallback={<h1>Oops something went wrong</h1>}>
+      <ErrorBoundary fallback={<p>Oops something went wrong</p>}>
         <MusicList
           searchQuery={debouncedSearchQuery}
           isValid={isValid}

@@ -4,7 +4,7 @@ import inst from '@assets/img/footer/inst.svg';
 import modsenfy from '@assets/img/footer/modsenfy.png';
 import twt from '@assets/img/footer/twt.svg';
 import header from '@assets/img/header/header.png';
-import home from '@assets/img/home/HomeMusic.png';
+import home from '@assets/img/home/home.jpg';
 import logo from '@assets/img/logo.svg';
 import search from '@assets/img/search.svg';
 

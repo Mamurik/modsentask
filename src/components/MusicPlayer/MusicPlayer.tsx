@@ -6,22 +6,26 @@ import AudioPlayer from 'react-h5-audio-player';
 import { useSelector } from 'react-redux';
 
 import { PlayerWrapper, StyledAudioPlayer, TrackTitle } from './styled';
-
+const PLAYER_UI = {
+  DEFAULT_VOLUME: 1,
+  EMPTY_MESSAGE: 'Select a track to listen to',
+};
 const MusicPlayer = () => {
   const selectedTrack = useSelector(
     (state: RootState) => state.tracks.selectedTrack
   );
   const isPlaying = useSelector((state: RootState) => state.tracks.isPlaying);
   const playerRef = useRef<AudioPlayer | null>(null);
-  const [volume] = useState(1);
+  const [volume] = useState(PLAYER_UI.DEFAULT_VOLUME);
 
   useEffect(() => {
-    if (playerRef.current?.audio?.current) {
-      if (isPlaying) {
-        playerRef.current.audio.current.play().catch(() => {});
-      } else {
-        playerRef.current.audio.current.pause();
-      }
+    const audioElement = playerRef.current?.audio?.current;
+    if (!audioElement) return;
+
+    if (isPlaying) {
+      audioElement.play().catch(() => {});
+    } else {
+      audioElement.pause();
     }
   }, [isPlaying, selectedTrack]);
 
@@ -31,11 +35,9 @@ const MusicPlayer = () => {
 
   return (
     <PlayerWrapper>
-      {selectedTrack ? (
-        <TrackTitle>{selectedTrack.title}</TrackTitle>
-      ) : (
-        <TrackTitle>Select a track to listen to</TrackTitle>
-      )}
+      <TrackTitle>
+        {selectedTrack ? selectedTrack.title : PLAYER_UI.EMPTY_MESSAGE}
+      </TrackTitle>
       <StyledAudioPlayer
         ref={playerRef}
         autoPlayAfterSrcChange

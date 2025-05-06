@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 import { FavoriteListWrapper, FavoriteNullText } from './styled';
 
-const tracksPerPage = 8;
+const TRACKS_PER_PAGE = 8;
 
 const FavoriteList = () => {
   const favoriteTrackIds = useSelector(
@@ -21,12 +21,12 @@ const FavoriteList = () => {
   }, [favoriteTrackIds, tracks]);
 
   const totalPages = useMemo(() => {
-    return Math.ceil(favoriteTracks.length / tracksPerPage);
+    return Math.ceil(favoriteTracks.length / TRACKS_PER_PAGE);
   }, [favoriteTracks.length]);
 
   const currentTracks = useMemo(() => {
-    const indexOfLastTrack = currentPage * tracksPerPage;
-    const indexOfFirstTrack = indexOfLastTrack - tracksPerPage;
+    const indexOfLastTrack = currentPage * TRACKS_PER_PAGE;
+    const indexOfFirstTrack = indexOfLastTrack - TRACKS_PER_PAGE;
     return favoriteTracks.slice(indexOfFirstTrack, indexOfLastTrack);
   }, [currentPage, favoriteTracks]);
 
@@ -35,7 +35,7 @@ const FavoriteList = () => {
   }, []);
 
   if (favoriteTracks.length === 0) {
-    return <FavoriteNullText>No favorites tracks</FavoriteNullText>;
+    return <FavoriteNullText>No favorite tracks</FavoriteNullText>;
   }
 
   return (
@@ -45,10 +45,11 @@ const FavoriteList = () => {
           <Track
             key={track.id}
             track={track}
-            imageWidth="170px"
-            imageHeight="170px"
-            musicTop="135px"
-            musicRight="55px"
+            imageWidth="13.125rem"
+            imageHeight="13.125rem"
+            musicTop="60%"
+            musicRight="10%"
+            isFixedSize
           />
         ))}
       </FavoriteListWrapper>

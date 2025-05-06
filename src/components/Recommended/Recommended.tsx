@@ -19,26 +19,28 @@ const Recommended = () => {
   if (isLoading) {
     return (
       <RecommendedWrapper>
-        <Loader></Loader>
+        <Loader />
       </RecommendedWrapper>
     );
   }
+
   if (!tracks.length) {
     return <RecommendedWrapper>No recommendations found.</RecommendedWrapper>;
   }
 
   return (
     <RecommendedWrapper>
-      <RecommendedText>Recommended</RecommendedText>
+      <RecommendedText as="h2">Recommended</RecommendedText>
       <RecommendedList>
         {tracks.map((track) => (
           <Track
             key={track.id}
             track={track}
-            imageWidth="170px"
-            imageHeight="170px"
-            musicTop="135px"
-            musicRight="55px"
+            imageWidth="13.125rem"
+            imageHeight="13.125rem"
+            musicTop="60%"
+            musicRight="10%"
+            isFixedSize
           />
         ))}
       </RecommendedList>

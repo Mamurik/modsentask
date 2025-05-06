@@ -1,5 +1,6 @@
 import FavoriteList from '@components/FavoriteList/FavoriteList';
 import MusicPlayer from '@components/MusicPlayer/MusicPlayer';
+import { images } from '@utils/images';
 
 import {
   FavoriteWrapper,
@@ -16,9 +17,9 @@ const Favorite = () => {
         <MusicPlayerWrapper>
           <MusicPlayer />
         </MusicPlayerWrapper>
-        <HomeMusicImage src="img/home/HomeMusic.png" />
+        <HomeMusicImage src={images.home} />
       </ImagePlayerWrapper>
-      <ResultText>Search results</ResultText>
+      <ResultText>Your Favorites</ResultText>
       <FavoriteList />
     </FavoriteWrapper>
   );

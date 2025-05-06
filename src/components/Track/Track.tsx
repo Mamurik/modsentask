@@ -3,6 +3,7 @@ import { toggleFavorite } from '@store/Slices/FavoritesSlice';
 import { setSelectedTrack, togglePlayPause } from '@store/Slices/TracksSlice';
 import { RootState } from '@store/store';
 import { ITrack } from '@types';
+import { images } from '@utils/images';
 import { FC, memo, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -23,6 +24,7 @@ interface TrackProps {
   imageHeight?: string;
   musicTop?: string;
   musicRight?: string;
+  isFixedSize?: boolean;
 }
 
 const Track: FC<TrackProps> = ({
@@ -31,6 +33,7 @@ const Track: FC<TrackProps> = ({
   imageHeight,
   musicRight,
   musicTop,
+  isFixedSize,
 }) => {
   const dispatch = useDispatch();
   const favoriteIds = useSelector(
@@ -67,9 +70,9 @@ const Track: FC<TrackProps> = ({
   }, [handlePlayPause]);
 
   return (
-    <TrackWrapper>
+    <TrackWrapper $isFixedSize={isFixedSize}>
       <TrackImage
-        src={track.artwork['480x480']}
+        src={track.artwork?.['480x480'] || images.logo}
         onClick={handleImageClick}
         style={{ cursor: 'pointer' }}
         $width={imageWidth}

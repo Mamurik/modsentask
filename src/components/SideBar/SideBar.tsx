@@ -34,7 +34,7 @@ const SideBar = () => {
       <MobileHeader>
         <Link to="/">
           <ModsenfyWrapper>
-            <Logo src="/img/logo.svg" alt="logo" />
+            <Logo src={images.logo} alt="logo" />
             <BrandText>Modsenfy</BrandText>
           </ModsenfyWrapper>
         </Link>

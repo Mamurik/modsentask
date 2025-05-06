@@ -1,98 +1,100 @@
 import { theme } from '@styles/theme';
 import styled from 'styled-components';
 
+const SPACING = {
+  padding: '2.5rem 1.25rem',
+  gapLarge: '2.5rem',
+  gapMedium: '1.5rem',
+  gapSmall: '1rem',
+};
+
 export const FooterWrapper = styled.footer`
   width: 100%;
   background: ${theme.colors.gradient};
-  padding: 40px 20px;
+  padding: ${SPACING.padding};
   position: relative;
   z-index: 12;
 `;
 
 export const FooterInner = styled.div`
-  max-width: 1600px;
+  max-width: 100rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
 `;
 
-export const LeftRightWrapper = styled.div`
+export const LeftRightWrapper = styled.section`
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-around;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: ${SPACING.gapLarge};
+  justify-content: space-around;
+  align-items: flex-start;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 64rem) {
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
 
-  @media (max-width: 390px) {
+  @media (max-width: 24.375rem) {
     align-items: flex-start;
     text-align: left;
-    padding-left: 10px;
-    gap: 20px;
+    padding-left: 0.625rem;
+    gap: ${SPACING.gapSmall};
   }
 `;
 
 export const LeftGroup = styled.div`
-  max-width: 320px;
-  margin-right: 100px;
+  max-width: 20rem;
+  margin-right: 6.25rem;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 64rem) {
     margin-right: 0;
   }
 
-  @media (max-width: 390px) {
+  @media (max-width: 24.375rem) {
     margin: 0;
   }
 `;
 
 export const LeftText = styled.p`
-  font-family: 'Inter', sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 22px;
-  color: #ffffff;
-  margin-top: 25px;
+  font-size: 0.875rem;
+  line-height: 1.57;
+  color: ${theme.colors.white};
+  margin-top: 1.5rem;
 `;
 
-export const RightGroup = styled.div`
+export const RightGroup = styled.nav`
   display: flex;
-  flex-direction: row;
-  gap: 150px;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 9.375rem;
 
-  @media (max-width: 1200px) {
-    gap: 60px;
+  @media (max-width: 75rem) {
+    gap: 3.75rem;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 48rem) {
     flex-direction: column;
-    gap: 40px;
     align-items: center;
+    gap: 2.5rem;
   }
 
-  @media (max-width: 390px) {
+  @media (max-width: 24.375rem) {
     align-items: flex-start;
     justify-content: flex-start;
-    gap: 20px;
-    padding-left: 10px;
+    gap: ${SPACING.gapSmall};
+    padding-left: 0.625rem;
   }
 `;
 
 export const NavList = styled.ul`
-  min-width: 140px;
+  min-width: 8.75rem;
   list-style: none;
   padding: 0;
   margin: 0;
 
-  @media (max-width: 390px) {
+  @media (max-width: 24.375rem) {
     li:not(:first-child) {
       display: none;
     }
@@ -100,23 +102,18 @@ export const NavList = styled.ul`
 `;
 
 export const ListTitle = styled.li`
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  letter-spacing: 2px;
+  font-size: 1.125rem;
+  letter-spacing: 0.125rem;
   text-transform: uppercase;
-  color: #ffffff;
-  margin-bottom: 18px;
+  color: ${theme.colors.white};
+  margin-bottom: 1.125rem;
 `;
+
 export const ListItem = styled.li`
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.4;
-  color: #ffffff;
-  margin-bottom: 10px;
+  color: ${theme.colors.white};
+  margin-bottom: 0.625rem;
 
   a {
     color: inherit;
@@ -124,84 +121,79 @@ export const ListItem = styled.li`
     transition:
       color 0.3s ease,
       text-decoration 0.3s ease;
-  }
 
-  a:hover {
-    color: ${theme.colors.orange};
-    text-decoration: underline;
-  }
+    &:hover {
+      color: ${theme.colors.orange};
+      text-decoration: underline;
+    }
 
-  a:active {
-    color: #ff6600;
+    &:active {
+      color: ${theme.colors.orangeDark};
+    }
   }
 `;
 
 export const FooterBottom = styled.div`
   width: 100%;
-  max-width: 1060px;
+  max-width: 66.25rem;
   margin-left: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 10px 0px;
+  padding: 0.625rem 0;
 
   p {
-    color: #fff;
-    font-size: 14px;
-    margin: 10px 0;
+    color: ${theme.colors.white};
+    font-size: 0.875rem;
+    margin: 0.625rem 0;
   }
 
   img {
     margin-bottom: 0;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 48rem) {
     flex-direction: column;
-    justify-content: center;
     text-align: center;
     margin: 0 auto;
 
     p {
-      margin-top: 15px;
+      margin-top: 0.9375rem;
     }
   }
 
-  @media (max-width: 390px) {
-    flex-direction: column;
-    justify-content: flex-start;
+  @media (max-width: 24.375rem) {
     align-items: flex-start;
     text-align: left;
-    padding-left: 10px;
-    margin: 0;
+    padding-left: 0.625rem;
 
     p {
-      margin-top: 5px;
+      margin-top: 0.3125rem;
     }
   }
 `;
 
 export const LinkList = styled.div`
   display: flex;
-  gap: 15px;
+  gap: 0.9375rem;
   flex-wrap: wrap;
-  justify-content: flex-start;
 
-  @media (max-width: 768px) {
+  @media (max-width: 48rem) {
     justify-content: center;
   }
 
-  @media (max-width: 390px) {
+  @media (max-width: 24.375rem) {
     justify-content: flex-start;
-    margin-bottom: 20px;
-    padding-left: 10px;
+    margin-bottom: 1.25rem;
+    padding-left: 0.625rem;
   }
 `;
 
 export const LinkItem = styled.a`
-  width: 40px;
-  height: 40px;
-  background: #ffffff;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: ${theme.colors.white};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -209,13 +201,13 @@ export const LinkItem = styled.a`
   transition: all 0.3s ease;
 
   img {
-    width: 20px;
-    height: 20px;
+    width: 1.25rem;
+    height: 1.25rem;
     transition: filter 0.3s ease;
   }
 
   &:hover {
-    background: orange;
+    background: ${theme.colors.orange};
 
     img {
       filter: brightness(0) invert(1);
