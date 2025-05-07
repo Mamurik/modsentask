@@ -15,7 +15,12 @@ export const RecommendedWrapper = styled.section`
     margin-left: 0;
   }
 `;
-
+export const LoaderWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rem;
+`;
 export const RecommendedText = styled.h2`
   font-family: 'Inter', sans-serif;
   font-weight: 500;

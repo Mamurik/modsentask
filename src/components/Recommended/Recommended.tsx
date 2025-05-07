@@ -3,7 +3,12 @@ import Loader from '@components/Loader/Loader';
 import Track from '@components/Track/Track';
 import { useMemo } from 'react';
 
-import { RecommendedList, RecommendedText, RecommendedWrapper } from './styled';
+import {
+  LoaderWrapper,
+  RecommendedList,
+  RecommendedText,
+  RecommendedWrapper,
+} from './styled';
 
 const Recommended = () => {
   const { data = [], isLoading, error } = useGetRecommendedQuery();
@@ -18,9 +23,9 @@ const Recommended = () => {
 
   if (isLoading) {
     return (
-      <RecommendedWrapper>
+      <LoaderWrapper>
         <Loader />
-      </RecommendedWrapper>
+      </LoaderWrapper>
     );
   }
 
