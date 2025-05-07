@@ -1,9 +1,11 @@
-import { NotFoundText, NotFoundWrapper } from './NotFound.styled';
-
+import { NotFoundText, NotFoundWrapper } from './styled';
+const NOT_FOUND_PAGE = {
+  TITLE: 'Page not found',
+};
 const NotFound = () => {
   return (
     <NotFoundWrapper>
-      <NotFoundText>Page not found</NotFoundText>
+      <NotFoundText>{NOT_FOUND_PAGE.TITLE}</NotFoundText>
     </NotFoundWrapper>
   );
 };

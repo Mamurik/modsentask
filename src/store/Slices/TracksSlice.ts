@@ -4,13 +4,13 @@ import { ITrack } from '@types';
 interface TrackState {
   tracks: ITrack[];
   selectedTrack: ITrack | null;
-  isPlaying: boolean; // здесь
+  isPlaying: boolean;
 }
 
 const initialState: TrackState = {
   tracks: [],
   selectedTrack: null,
-  isPlaying: false, // здесь
+  isPlaying: false,
 };
 
 const TrackSlice = createSlice({

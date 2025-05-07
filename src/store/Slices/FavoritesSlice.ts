@@ -1,8 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import LocalStorageService from '@utils/LocalStorageService';
 
 const getFavoritesFromLocalStorage = (): string[] => {
-  const savedFavorites = localStorage.getItem('favorites');
-  return savedFavorites ? JSON.parse(savedFavorites) : [];
+  return LocalStorageService.getItem<string[]>('favorites') || [];
+};
+
+const saveFavoritesToLocalStorage = (favoriteTrackIds: string[]) => {
+  LocalStorageService.setItem('favorites', favoriteTrackIds);
 };
 
 interface FavoritesState {
@@ -26,11 +30,11 @@ const FavoritesSlice = createSlice({
       } else {
         state.favoriteTrackIds.push(trackId);
       }
-      localStorage.setItem('favorites', JSON.stringify(state.favoriteTrackIds));
+      saveFavoritesToLocalStorage(state.favoriteTrackIds);
     },
     setFavorites: (state, action: PayloadAction<string[]>) => {
       state.favoriteTrackIds = action.payload;
-      localStorage.setItem('favorites', JSON.stringify(state.favoriteTrackIds));
+      saveFavoritesToLocalStorage(state.favoriteTrackIds);
     },
   },
 });

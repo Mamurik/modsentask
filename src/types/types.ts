@@ -5,10 +5,9 @@ export interface ITrack {
   title: string;
   user: User;
   duration: number;
-
-  release_date: string; //добавленным
-  repost_count: number; //актуальности
-  favorite_count: number; //популярности
+  release_date: string;
+  repost_count: number;
+  favorite_count: number;
 }
 
 export interface Artwork {
@@ -20,4 +19,8 @@ export interface Artwork {
 export interface User {
   id: string;
   name: string;
+}
+export interface ITrackResponse {
+  tracks: ITrack[];
+  total: number;
 }

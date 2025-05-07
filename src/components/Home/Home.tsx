@@ -1,18 +1,14 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import { memo, useCallback, useEffect, useState } from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
-
-import MusicList from '@components/MusicList/MusicList';
-import Recommended from '@components/Recomended/Recomended';
-import MusicPlayer from '@components/UI/MusicPlayer/MusicPlayer';
-import SearchInput from '@components/UI/SearchInput/SearchInput';
-import Select from '@components/UI/Select/Select';
-
-import { searchSchema } from '@components/UI/SearchInput/searchValidation';
-
 import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
+import MusicList from '@components/MusicList/MusicList';
+import MusicPlayer from '@components/MusicPlayer/MusicPlayer';
+import Recommended from '@components/Recommended/Recommended';
+import SearchInput from '@components/SearchInput/SearchInput';
+import Select from '@components/Select/Select';
+import { useSearchForm } from '@hooks/useSearchForm';
+import { useSort } from '@hooks/useSort';
+import { memo } from 'react';
+
 import {
-  HomeMusicImage,
   HomeWrapper,
   ImagePlayerWrapper,
   InputWrapper,
@@ -20,45 +16,11 @@ import {
   ResultText,
   SelectGroup,
   SelectTitle,
-} from './Home.styled';
-
-interface SearchFormData extends FieldValues {
-  search: string;
-}
+} from './styled';
 
 const Home = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState('');
-  const [sortType, setSortType] = useState('relevance');
-
-  const {
-    control,
-    watch,
-    formState: { isValid },
-  } = useForm<SearchFormData>({
-    resolver: yupResolver(searchSchema),
-    mode: 'onChange',
-    defaultValues: { search: '' },
-  });
-
-  useEffect(() => {
-    const subscription = watch((value) => {
-      setSearchQuery(value.search || '');
-    });
-    return () => subscription.unsubscribe();
-  }, [watch]);
-
-  useEffect(() => {
-    const timerId = setTimeout(() => {
-      setDebouncedSearchQuery(searchQuery);
-    }, 500);
-
-    return () => clearTimeout(timerId);
-  }, [searchQuery]);
-
-  const handleSortSelect = useCallback((value: string) => {
-    setSortType(value);
-  }, []);
+  const { control, debouncedSearchQuery, isValid } = useSearchForm();
+  const { sortType, handleSortSelect } = useSort();
 
   return (
     <HomeWrapper>
@@ -81,13 +43,11 @@ const Home = () => {
         <MusicPlayerWrapper>
           <MusicPlayer />
         </MusicPlayerWrapper>
-
-        <HomeMusicImage src="img/home/HomeMusic.png" />
       </ImagePlayerWrapper>
 
       <ResultText>Search results</ResultText>
 
-      <ErrorBoundary fallback={<h1>Ошибка при загрузке треков 🎵</h1>}>
+      <ErrorBoundary fallback={<p>Oops something went wrong</p>}>
         <MusicList
           searchQuery={debouncedSearchQuery}
           isValid={isValid}

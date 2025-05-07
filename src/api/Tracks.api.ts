@@ -7,8 +7,9 @@ export const trackApi = createApi({
     baseUrl: 'https://discoveryprovider.audius.co/v1/',
   }),
   endpoints: (builder) => ({
-    getTracks: builder.query<ITrack[], void>({
-      query: () => 'tracks/search?limit=16',
+    getTracks: builder.query<ITrack[], { page: number; perPage: number }>({
+      query: ({ page, perPage }) =>
+        `tracks/search?offset=${(page - 1) * perPage}&limit=${perPage}`,
       transformResponse: (response: { data: ITrack[] }) => response.data,
     }),
     getRecommended: builder.query<ITrack[], void>({
@@ -18,7 +19,19 @@ export const trackApi = createApi({
         return shuffled.slice(0, 5);
       },
     }),
+    getTracksBySearch: builder.query<
+      ITrack[],
+      { searchQuery: string; page: number; perPage: number }
+    >({
+      query: ({ searchQuery, page, perPage }) =>
+        `tracks/search?query=${encodeURIComponent(searchQuery)}&offset=${(page - 1) * perPage}&limit=${perPage}`,
+      transformResponse: (response: { data: ITrack[] }) => response.data,
+    }),
   }),
 });
 
-export const { useGetTracksQuery, useGetRecommendedQuery } = trackApi;
+export const {
+  useGetTracksBySearchQuery,
+  useGetTracksQuery,
+  useGetRecommendedQuery,
+} = trackApi;

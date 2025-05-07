@@ -1,10 +1,10 @@
 import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
-import Layout from '@components/UI/Layout/Layout';
+import Layout from '@components/Layout/Layout';
+import { routes } from '@constants/routes';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import ColorsPage from './ColorsPage';
+
 import FavoritePage from './FavoritePage';
 import HomePage from './HomePage';
-import IconsPage from './IconsPage';
 import NotFoundPage from './NotFoundPage';
 
 export const AppRouter = () => {
@@ -12,55 +12,31 @@ export const AppRouter = () => {
     <BrowserRouter>
       <Routes>
         <Route
-          path="/"
+          path={routes.HOME}
           element={
             <Layout>
-              <ErrorBoundary
-                fallback={<div>Что-то пошло не так на главной 🙈</div>}
-              >
+              <ErrorBoundary fallback={<div>Oops something went wrong </div>}>
                 <HomePage />
               </ErrorBoundary>
             </Layout>
           }
         />
         <Route
-          path="/favorite"
+          path={routes.FAVORITE}
           element={
             <Layout>
-              <ErrorBoundary
-                fallback={<div>Не удалось загрузить избранное 🙈</div>}
-              >
+              <ErrorBoundary fallback={<div>Oops something went wrong </div>}>
                 <FavoritePage />
               </ErrorBoundary>
             </Layout>
           }
         />
         <Route
-          path="*"
+          path={routes.NOT_FOUND}
           element={
             <Layout>
               <NotFoundPage />
             </Layout>
-          }
-        />
-        <Route
-          path="/colors"
-          element={
-            <ErrorBoundary
-              fallback={<div>Ошибка при загрузке страницы с цветами 🙈</div>}
-            >
-              <ColorsPage />
-            </ErrorBoundary>
-          }
-        />
-        <Route
-          path="/icons"
-          element={
-            <ErrorBoundary
-              fallback={<div>Ошибка при загрузке страницы с иконками 🙈</div>}
-            >
-              <IconsPage />
-            </ErrorBoundary>
           }
         />
       </Routes>

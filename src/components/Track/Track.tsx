@@ -1,14 +1,10 @@
-import {
-  LikeIcon,
-  MusicPlaying,
-  MusicStopped,
-} from '@components/UI/Icons/Icons';
-import { toggleFavorite } from '@store/Slices/FavoritesSlice';
-import { setSelectedTrack, togglePlayPause } from '@store/Slices/TracksSlice';
-import { RootState } from '@store/store';
+import { LikeIcon, MusicPlaying, MusicStopped } from '@components/Icons/Icons';
+import { useTrackActions } from '@hooks/useTrackActions';
+import { useTrackState } from '@hooks/useTrackState';
 import { ITrack } from '@types';
-import { FC, memo, useCallback, useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { images } from '@utils/images';
+import { FC, memo } from 'react';
+
 import {
   IconLike,
   MusicIconWrapper,
@@ -18,7 +14,7 @@ import {
   TrackText,
   TrackTitle,
   TrackWrapper,
-} from './Track.styled';
+} from './styled';
 
 interface TrackProps {
   track: ITrack;
@@ -26,6 +22,8 @@ interface TrackProps {
   imageHeight?: string;
   musicTop?: string;
   musicRight?: string;
+  isFixedSize?: boolean;
+  fixedImageHeight?: boolean;
 }
 
 const Track: FC<TrackProps> = ({
@@ -34,50 +32,26 @@ const Track: FC<TrackProps> = ({
   imageHeight,
   musicRight,
   musicTop,
+  isFixedSize,
+  fixedImageHeight,
 }) => {
-  const dispatch = useDispatch();
-  const favoriteIds = useSelector(
-    (state: RootState) => state.favorites.favoriteTrackIds
+  const { isLiked, isCurrentTrack, isPlaying } = useTrackState(track.id);
+  const { handleLike, handlePlayPause, handleImageClick } = useTrackActions(
+    track,
+    isCurrentTrack
   );
-  const selectedTrack = useSelector(
-    (state: RootState) => state.tracks.selectedTrack
-  );
-  const isPlaying = useSelector((state: RootState) => state.tracks.isPlaying);
-
-  const isLiked = useMemo(
-    () => favoriteIds.includes(track.id),
-    [favoriteIds, track.id]
-  );
-  const isCurrentTrack = useMemo(
-    () => selectedTrack?.id === track.id,
-    [selectedTrack, track.id]
-  );
-
-  const handleLike = useCallback(() => {
-    dispatch(toggleFavorite(track.id));
-  }, [dispatch, track.id]);
-
-  const handlePlayPause = useCallback(() => {
-    if (isCurrentTrack) {
-      dispatch(togglePlayPause());
-    } else {
-      dispatch(setSelectedTrack(track));
-    }
-  }, [dispatch, isCurrentTrack, track]);
-
-  const handleImageClick = useCallback(() => {
-    handlePlayPause();
-  }, [handlePlayPause]);
 
   return (
-    <TrackWrapper>
+    <TrackWrapper $isFixedSize={isFixedSize}>
       <TrackImage
-        src={track.artwork['480x480']}
+        src={track.artwork?.['480x480'] || images.logo}
         onClick={handleImageClick}
         style={{ cursor: 'pointer' }}
         $width={imageWidth}
         $height={imageHeight}
+        $fixedImageHeight={fixedImageHeight}
       />
+
       <TrackInfoRow>
         <TrackText>
           <TrackTitle>{track.title}</TrackTitle>
@@ -90,6 +64,7 @@ const Track: FC<TrackProps> = ({
           />
         </IconLike>
       </TrackInfoRow>
+
       <MusicIconWrapper
         onClick={handlePlayPause}
         $top={musicTop}

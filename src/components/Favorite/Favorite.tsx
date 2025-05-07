@@ -1,12 +1,12 @@
 import FavoriteList from '@components/FavoriteList/FavoriteList';
-import MusicPlayer from '@components/UI/MusicPlayer/MusicPlayer';
+import MusicPlayer from '@components/MusicPlayer/MusicPlayer';
+
 import {
   FavoriteWrapper,
-  HomeMusicImage,
   ImagePlayerWrapper,
   MusicPlayerWrapper,
   ResultText,
-} from './Favorite.styled';
+} from './styled';
 
 const Favorite = () => {
   return (
@@ -15,9 +15,8 @@ const Favorite = () => {
         <MusicPlayerWrapper>
           <MusicPlayer />
         </MusicPlayerWrapper>
-        <HomeMusicImage src="img/home/HomeMusic.png" />
       </ImagePlayerWrapper>
-      <ResultText>Search results</ResultText>
+      <ResultText>Your Favorites</ResultText>
       <FavoriteList />
     </FavoriteWrapper>
   );
