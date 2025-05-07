@@ -5,6 +5,10 @@ const getFavoritesFromLocalStorage = (): string[] => {
   return LocalStorageService.getItem<string[]>('favorites') || [];
 };
 
+const saveFavoritesToLocalStorage = (favoriteTrackIds: string[]) => {
+  LocalStorageService.setItem('favorites', favoriteTrackIds);
+};
+
 interface FavoritesState {
   favoriteTrackIds: string[];
 }
@@ -26,11 +30,11 @@ const FavoritesSlice = createSlice({
       } else {
         state.favoriteTrackIds.push(trackId);
       }
-      LocalStorageService.setItem('favorites', state.favoriteTrackIds);
+      saveFavoritesToLocalStorage(state.favoriteTrackIds);
     },
     setFavorites: (state, action: PayloadAction<string[]>) => {
       state.favoriteTrackIds = action.payload;
-      LocalStorageService.setItem('favorites', state.favoriteTrackIds);
+      saveFavoritesToLocalStorage(state.favoriteTrackIds);
     },
   },
 });

@@ -1,39 +1,29 @@
+import { usePagination } from '@hooks/usePagination';
 import React from 'react';
 
 import { PaginationButton, PaginationWrapper } from './styled';
 
 interface PaginationProps {
   currentPage: number;
-  totalPages: number;
   onPageChange: (page: number) => void;
+  hasMore: boolean;
 }
 
 const Pagination = ({
   currentPage,
-  totalPages,
   onPageChange,
+  hasMore,
 }: PaginationProps) => {
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      onPageChange(currentPage - 1);
-    }
-  };
-
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      onPageChange(currentPage + 1);
-    }
-  };
+  const { handlePrevPage, handleNextPage, isPrevDisabled, isNextDisabled } =
+    usePagination({ currentPage, hasMore, onPageChange });
 
   return (
     <PaginationWrapper>
-      <PaginationButton disabled={currentPage === 1} onClick={handlePrevPage}>
+      <PaginationButton disabled={isPrevDisabled} onClick={handlePrevPage}>
         Prev
       </PaginationButton>
-      <PaginationButton
-        disabled={currentPage === totalPages}
-        onClick={handleNextPage}
-      >
+
+      <PaginationButton disabled={isNextDisabled} onClick={handleNextPage}>
         Next
       </PaginationButton>
     </PaginationWrapper>

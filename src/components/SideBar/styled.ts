@@ -19,7 +19,7 @@ const ACTIVE_BG = theme.colors.gradient;
 const INACTIVE_COLOR = '#999';
 const ACTIVE_COLOR = '#fff';
 
-export const Nav = styled.nav<{ isOpen?: boolean }>`
+export const Nav = styled.nav<{ $isOpen?: boolean }>`
   position: fixed;
   left: 0;
   top: 0;
@@ -32,8 +32,8 @@ export const Nav = styled.nav<{ isOpen?: boolean }>`
   z-index: 10;
 
   @media (max-width: 480px) {
-    transform: ${({ isOpen }) =>
-      isOpen ? 'translateX(0)' : 'translateX(-100%)'};
+    transform: ${({ $isOpen }) =>
+      $isOpen ? 'translateX(0)' : 'translateX(-100%)'};
     width: 100%;
   }
 `;

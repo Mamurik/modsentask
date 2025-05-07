@@ -53,14 +53,19 @@ export const TrackWrapper = styled.div<{
   `}
 `;
 
-export const TrackImage = styled.img<{ $width?: string; $height?: string }>`
+export const TrackImage = styled.img<{
+  $width?: string;
+  $height?: string;
+  $fixedImageHeight?: boolean;
+}>`
   width: ${({ $width }) => $width || '100%'};
   height: ${({ $height }) => $height || TRACK_IMAGE_HEIGHT};
   object-fit: cover;
   border-radius: 12px;
 
   @media (max-width: 24.375rem) {
-    height: 5rem;
+    height: ${({ $fixedImageHeight }) =>
+      $fixedImageHeight ? '12rem' : '5rem'};
   }
 `;
 

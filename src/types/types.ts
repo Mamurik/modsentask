@@ -20,3 +20,7 @@ export interface User {
   id: string;
   name: string;
 }
+export interface ITrackResponse {
+  tracks: ITrack[];
+  total: number;
+}

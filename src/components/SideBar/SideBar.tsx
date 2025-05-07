@@ -40,7 +40,7 @@ const SideBar = () => {
         </Link>
         <BurgerButton onClick={toggleSidebar}>☰</BurgerButton>
       </MobileHeader>
-      <Nav isOpen={isOpen}>
+      <Nav $isOpen={isOpen}>
         <CloseButton onClick={toggleSidebar}>×</CloseButton>
         <Link to="/">
           <ModsenfyWrapper>

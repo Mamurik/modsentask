@@ -4,10 +4,9 @@ import MusicPlayer from '@components/MusicPlayer/MusicPlayer';
 import Recommended from '@components/Recommended/Recommended';
 import SearchInput from '@components/SearchInput/SearchInput';
 import Select from '@components/Select/Select';
-import { searchSchema } from '@constants/searchValidation';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { memo, useCallback, useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useSearchForm } from '@hooks/useSearchForm';
+import { useSort } from '@hooks/useSort';
+import { memo } from 'react';
 
 import {
   HomeWrapper,
@@ -19,43 +18,9 @@ import {
   SelectTitle,
 } from './styled';
 
-interface SearchFormData {
-  search: string;
-}
-
 const Home = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState('');
-  const [sortType, setSortType] = useState('relevance');
-
-  const {
-    control,
-    watch,
-    formState: { isValid },
-  } = useForm<SearchFormData>({
-    resolver: yupResolver(searchSchema),
-    mode: 'onChange',
-    defaultValues: { search: '' },
-  });
-
-  useEffect(() => {
-    const subscription = watch((value) => {
-      setSearchQuery(value.search || '');
-    });
-    return () => subscription.unsubscribe();
-  }, [watch]);
-
-  useEffect(() => {
-    const timerId = setTimeout(() => {
-      setDebouncedSearchQuery(searchQuery);
-    }, 500);
-
-    return () => clearTimeout(timerId);
-  }, [searchQuery]);
-
-  const handleSortSelect = useCallback((value: string) => {
-    setSortType(value);
-  }, []);
+  const { control, debouncedSearchQuery, isValid } = useSearchForm();
+  const { sortType, handleSortSelect } = useSort();
 
   return (
     <HomeWrapper>

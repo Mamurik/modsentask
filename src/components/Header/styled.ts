@@ -59,7 +59,7 @@ export const HeaderText = styled.h2`
   font-size: ${rem(HEADER_SIZES.font)};
   line-height: ${rem(HEADER_SIZES.lineHeight)};
   position: absolute;
-  color: ${theme.colors.gradient};
+  color: rgba(255, 255, 255, 0.6);
   z-index: 2;
 
   @media (max-width: ${rem(390)}) {

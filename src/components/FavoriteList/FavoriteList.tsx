@@ -1,47 +1,49 @@
+import Loader from '@components/Loader/Loader';
 import Pagination from '@components/Pagination/Pagination';
 import Track from '@components/Track/Track';
-import { RootState } from '@store/store';
-import { memo, useCallback, useMemo, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useFavoriteTracks } from '@hooks/useFavoriteTracks';
+import { memo, useCallback } from 'react';
 
 import { FavoriteListWrapper, FavoriteNullText } from './styled';
 
-const TRACKS_PER_PAGE = 8;
-
 const FavoriteList = () => {
-  const favoriteTrackIds = useSelector(
-    (state: RootState) => state.favorites.favoriteTrackIds
+  const {
+    isLoading,
+    isError,
+    paginatedTracks,
+    totalPages,
+    currentPage,
+    setCurrentPage,
+    hasFavorites,
+  } = useFavoriteTracks();
+
+  const handlePageChange = useCallback(
+    (page: number) => {
+      setCurrentPage(page);
+    },
+    [setCurrentPage]
   );
-  const tracks = useSelector((state: RootState) => state.tracks.tracks);
 
-  const [currentPage, setCurrentPage] = useState(1);
+  if (isLoading) {
+    return (
+      <FavoriteListWrapper>
+        <Loader />
+      </FavoriteListWrapper>
+    );
+  }
 
-  const favoriteTracks = useMemo(() => {
-    return tracks.filter((track) => favoriteTrackIds.includes(track.id));
-  }, [favoriteTrackIds, tracks]);
+  if (isError) {
+    return <div>Error loading tracks</div>;
+  }
 
-  const totalPages = useMemo(() => {
-    return Math.ceil(favoriteTracks.length / TRACKS_PER_PAGE);
-  }, [favoriteTracks.length]);
-
-  const currentTracks = useMemo(() => {
-    const indexOfLastTrack = currentPage * TRACKS_PER_PAGE;
-    const indexOfFirstTrack = indexOfLastTrack - TRACKS_PER_PAGE;
-    return favoriteTracks.slice(indexOfFirstTrack, indexOfLastTrack);
-  }, [currentPage, favoriteTracks]);
-
-  const handlePageChange = useCallback((page: number) => {
-    setCurrentPage(page);
-  }, []);
-
-  if (favoriteTracks.length === 0) {
+  if (!hasFavorites) {
     return <FavoriteNullText>No favorite tracks</FavoriteNullText>;
   }
 
   return (
     <>
       <FavoriteListWrapper>
-        {currentTracks.map((track) => (
+        {paginatedTracks.map((track) => (
           <Track
             key={track.id}
             track={track}
@@ -50,6 +52,7 @@ const FavoriteList = () => {
             musicTop="60%"
             musicRight="10%"
             isFixedSize
+            fixedImageHeight
           />
         ))}
       </FavoriteListWrapper>
@@ -57,8 +60,8 @@ const FavoriteList = () => {
       {totalPages > 1 && (
         <Pagination
           currentPage={currentPage}
-          totalPages={totalPages}
           onPageChange={handlePageChange}
+          hasMore={currentPage < totalPages}
         />
       )}
     </>

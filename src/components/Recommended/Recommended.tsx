@@ -38,9 +38,10 @@ const Recommended = () => {
             track={track}
             imageWidth="13.125rem"
             imageHeight="13.125rem"
-            musicTop="60%"
-            musicRight="10%"
+            musicTop="55%"
+            musicRight="15%"
             isFixedSize
+            fixedImageHeight
           />
         ))}
       </RecommendedList>

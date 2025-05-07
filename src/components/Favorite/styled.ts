@@ -1,3 +1,5 @@
+import { images } from '@utils/images';
+import { rem } from '@utils/rem';
 import styled from 'styled-components';
 
 const COLORS = {
@@ -15,7 +17,24 @@ const IMAGE_HEIGHT = {
   tablet: '14rem',
   mobile: '12rem',
 };
+const BREAKPOINTS = {
+  mobile: 390,
+  tablet: 768,
+};
 
+const MARGINS = {
+  large: 32,
+  medium: 24,
+  small: 16,
+};
+
+const SIZES = {
+  musicImageHeight: {
+    default: '16em',
+    tablet: '14em',
+    mobile: '20em',
+  },
+};
 export const FavoriteWrapper = styled.section`
   margin: 0;
   padding: 0;
@@ -113,19 +132,30 @@ export const MusicPlayerWrapper = styled.div`
     transform: none;
   }
 `;
-
 export const ImagePlayerWrapper = styled.div`
   position: relative;
-  margin: 1.25rem ${SPACING.desktop};
-  min-height: ${IMAGE_HEIGHT.desktop};
+  margin: ${rem(20)} ${rem(MARGINS.large)};
+  min-height: ${SIZES.musicImageHeight.default};
+  overflow: hidden;
 
-  @media (max-width: 768px) {
-    margin: 1.25rem ${SPACING.tablet} 0;
-    min-height: ${IMAGE_HEIGHT.tablet};
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url(${images.home});
+    background-size: cover;
+    background-position: center;
+    opacity: 0.35;
+    z-index: 0;
   }
 
-  @media (max-width: 390px) {
-    margin: 1rem 0 0;
-    min-height: ${IMAGE_HEIGHT.mobile};
+  @media (max-width: ${rem(BREAKPOINTS.tablet)}) {
+    margin: ${rem(20)} ${rem(MARGINS.medium)} 0;
+    min-height: ${SIZES.musicImageHeight.tablet};
+  }
+
+  @media (max-width: ${rem(BREAKPOINTS.mobile)}) {
+    margin: ${rem(16)} 0 0;
+    min-height: ${SIZES.musicImageHeight.mobile};
   }
 `;

@@ -10,7 +10,7 @@ const SPACING = {
 };
 
 const WIDTHS = {
-  maxDefault: '100rem',
+  maxDefault: '80rem',
   maxLarge: '75rem',
   maxMedium: '68.75rem',
   maxMobile: '18.75rem',
